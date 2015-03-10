@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibabook", "Bibabook\Bibabook.csproj", "{8612FE75-74A9-4EC0-8CFF-98F25EA17EEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibabook.Tests", "Bibabook.Tests\Bibabook.Tests.csproj", "{48C85F02-3484-4A99-A75F-B1D6C3FAABC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{552F3509-D58B-467A-B74D-33265D99F48C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibabook.Contract", "Bibabook.Contract\Bibabook.Contract.csproj", "{FF83A573-27D9-4EE4-A839-98D86BCDA6E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8612FE75-74A9-4EC0-8CFF-98F25EA17EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8612FE75-74A9-4EC0-8CFF-98F25EA17EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8612FE75-74A9-4EC0-8CFF-98F25EA17EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8612FE75-74A9-4EC0-8CFF-98F25EA17EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48C85F02-3484-4A99-A75F-B1D6C3FAABC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C85F02-3484-4A99-A75F-B1D6C3FAABC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48C85F02-3484-4A99-A75F-B1D6C3FAABC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48C85F02-3484-4A99-A75F-B1D6C3FAABC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF83A573-27D9-4EE4-A839-98D86BCDA6E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF83A573-27D9-4EE4-A839-98D86BCDA6E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF83A573-27D9-4EE4-A839-98D86BCDA6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF83A573-27D9-4EE4-A839-98D86BCDA6E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
