@@ -10,26 +10,26 @@ namespace Contract
         /// <summary>
         /// Wysyła użytkownikowi zaproszenie do znajomych. Powinien dostać stosowne powiadomienie.
         /// </summary>
-        /// <param name="sender">User inviting</param>
-        /// <param name="receiver">User invited</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
+        /// <param name="sender">Użytkownik wysyłający zaproszenie</param>
+        /// <param name="receiver">Adresat zaproszenia</param>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
         Boolean SendFriendInvitation(IAppUser sender, IAppUser receiver);
 
         /// <summary>
         /// Dodaje znajomego firstUser do znajomych secondUser oraz secondUser do znajomych firstUser 
         /// w momencie akceptacji zaproszenia.
         /// </summary>
-        /// <param name="firstUserId">Unikalny identyfikator pierwszego użytkownika</param>
-        /// <param name="secondUserId">Unikalny identyfikator drugiego użytkownika</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
-        Boolean FriendUsers(String firstUserId, String secondUserId);
+        /// <param name="firstUser">Pierwszy użytkownik</param>
+        /// <param name="secondUser">Drugi użytkownik</param>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
+        Boolean FriendUsers(IAppUser firstUser, IAppUser secondUser);
 
         /// <summary>
         /// Kasuje firstUser ze znajomych secondUser oraz secondUser ze znajomych firstUser.
         /// </summary>
-        /// <param name="firstUserId">Unikalny identyfikator pierwszego użytkownika</param>
-        /// <param name="secondUserId">Unikalny identyfikator drugiego użytkownika</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
-        Boolean UnfriendUsers(String firstUserId, String secondUserId);
+        /// <param name="firstUser">Pierwszy użytkownik</param>
+        /// <param name="secondUser">Drugi użytkownik</param>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
+        Boolean UnfriendUsers(IAppUser firstUser, IAppUser secondUser);
     }
 }

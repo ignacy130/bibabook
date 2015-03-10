@@ -43,6 +43,7 @@
     <Compile Include="AppUserService\IAppUserEmailService.cs" />
     <Compile Include="AppUserService\IAppUserService.cs" />
     <Compile Include="AppUserService\IAppUserSocialService.cs" />
+    <Compile Include="Interfaces\ISearchable.cs" />
     <Compile Include="Models\IEmail.cs" />
     <Compile Include="EmailService\IEmailService.cs" />
     <Compile Include="EventPost\IEventPostService.cs" />
@@ -50,11 +51,14 @@
     <Compile Include="NotificationService\NotificationStatus.cs" />
     <Compile Include="PostComment\IPostCommentService.cs" />
     <Compile Include="ReportService\IReportInappropriateContentService.cs" />
-    <Compile Include="SearchService\ISearchParameters.cs" />
+    <Compile Include="ReportService\ReportReason.cs" />
+    <Compile Include="SearchService\SearchHelpers\IAdvancedSearchHelper.cs" />
+    <Compile Include="SearchService\SearchHelpers\ISearchHelper.cs" />
+    <Compile Include="SearchService\SearchHelpers\ISearchParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchService\ISearchCondition.cs" />
+    <Compile Include="SearchService\SearchHelpers\ISearchCondition.cs" />
     <Compile Include="SearchService\ISearchService.cs" />
-    <Compile Include="SearchService\SearchConditionType.cs" />
+    <Compile Include="SearchService\SearchHelpers\SearchConditionType.cs" />
     <Compile Include="Models\IAppEvent.cs" />
     <Compile Include="Models\IAppUser.cs" />
     <Compile Include="Models\IEventPost.cs" />

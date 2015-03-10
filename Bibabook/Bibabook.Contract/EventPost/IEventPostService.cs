@@ -7,23 +7,28 @@ namespace Contract
     /// </summary>
     public interface IEventPostService
     {
-        Boolean Create(/* argumenty ściśle zależą od przyjętego modelu posta */);
+        /// <summary>
+        /// Dodaje nowy post do bazy.
+        /// </summary>
+        /// <param name="eventPost">Dodawany post</param>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
+        Boolean Create(IEventPost eventPost);
 
         /// <summary>
         /// Zmienia treść posta. Opcja ta powinna być dostepna wyłącznie dla autora posta oraz moderatorów.
         /// </summary>
-        /// <param name="eventPostId">Unikalny identyfikator (GUID) posta</param>
+        /// <param name="eventPost">Instancja posta</param>
         /// <param name="newContent">Nowa treść posta</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
-        Boolean Edit(IEventPost post, String newContent);
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
+        Boolean Edit(IEventPost eventPost, String newContent);
 
         /// <summary>
         /// Przypisuje komentarz do posta.
         /// </summary>
-        /// <param name="eventPostId">Unikalny identyfikator (GUID) posta</param>
-        /// <param name="postCommentId">Unikalny identyfikator (GUID) komentarza</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
-        Boolean AddPostComment(IEventPost eventPostId, IPostComment postCommentId);
+        /// <param name="eventPost">Instancja posta</param>
+        /// <param name="postComment">Instancja komentarza</param>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
+        Boolean AddPostComment(IEventPost eventPost, IPostComment postComment);
 
         /// <summary>
         /// Trwale kasuje post z bazy danych. Wszystkie przypisane do niego komentarze także powinny zostać 
@@ -31,7 +36,7 @@ namespace Contract
         /// oraz moderatorów.
         /// </summary>
         /// <param name="eventPost">Instancja posta do skasowania</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
         Boolean Delete(IEventPost eventPost);
     }
 }

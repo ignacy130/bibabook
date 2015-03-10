@@ -7,22 +7,27 @@ namespace Contract
     /// </summary>
     public interface IPostCommentService
     {
-        Boolean Create(/* argumenty ściśle zależą od przyjętego modelu komentarza */);
+        /// <summary>
+        /// Dodaje komentarz do bazy.
+        /// </summary>
+        /// <param name="eventPost">Dodawany komentarz</param>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
+        Boolean Create(IPostComment postComment);
 
         /// <summary>
         /// Zmienia treść komentarza. Opcja ta powinna być dostepna wyłącznie dla autora komentarza oraz moderatorów.
         /// </summary>
-        /// <param name="postCommentId">Unikalny identyfikator (GUID) komentarza</param>
+        /// <param name="postComment">Komentarz</param>
         /// <param name="newContent">Nowa treść komentarza</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
-        Boolean Edit(String postCommentId, String newContent);
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
+        Boolean Edit(IPostComment postComment, String newContent);
 
         /// <summary>
         /// Trwale kasuje komentarz z bazy danych. Opcja ta powinna być dostepna wyłącznie dla autora, właściciela 
         /// wydarzenia oraz moderatorów.
         /// </summary>
         /// <param name="postComment">Instancja komentarza do skasowania</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
         Boolean Delete(IPostComment postComment);
     }
 }

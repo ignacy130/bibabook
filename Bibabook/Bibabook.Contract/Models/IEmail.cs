@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Contract._DataInterfaces
+namespace Contract
 {
     public interface IEmail
     {
         DateTime Date { get; set; }
-        string RecipientEmail { get; set; }
-        string SenderEmail { get; set; }
-        string Subject { get; set; }
-        string Content { get; set; }
+        String RecipientEmail { get; set; }
+        String Subject { get; set; }
+        String Content { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Contract._DataInterfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Mail;
 
@@ -16,21 +15,20 @@ namespace Contract
         SmtpClient Client { get; set; }
 
         /// <summary>
-        /// Wysyła e-mail z konta systemu.
+        /// Tworzy wiadomość e-mail.
         /// </summary>
-        /// <param name="email">Email to be sent.</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
-        Boolean SendEmail(IEmail email);
+        /// <param name="receiverEmailAddress">Adres e-mail odbiorcy</param>
+        /// <param name="subject">Temat wiadomości</param>
+        /// <param name="message">Treść</param>
+        /// <returns>Nowy e-mail</returns>
+        IEmail CreateEmail(String receiverEmailAddress, String subject, String message);
 
         /// <summary>
-        /// Creates email.
+        /// Wysyła e-mail z konta systemu.
         /// </summary>
-        /// <param name="receiverEmailAddress">Recipient email address.</param>
-        /// <param name="senderEmailAddress">Sender email address</param>
-        /// <param name="subject">Subject of email</param>
-        /// <param name="message">Content of email</param>
-        /// <returns></returns>
-        IEmail CreateEmail(String receiverEmailAddress, String senderEmailAddress, String subject, String message);
+        /// <param name="email">Wysyłany e-mail</param>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
+        Boolean SendEmail(IEmail email);
 
         /// <summary>
         /// Wysyła e-mail z konta systemu.
@@ -38,7 +36,7 @@ namespace Contract
         /// <param name="receiverEmailAddress">Adresy odbiorców</param>
         /// <param name="subject">Temat wiadomości</param>
         /// <param name="message">Treść</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
         Boolean SendEmail(ICollection<String> receiversEmailAddresses, String subject, String message);
     }
 }

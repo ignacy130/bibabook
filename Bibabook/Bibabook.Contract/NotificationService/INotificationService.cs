@@ -8,22 +8,27 @@ namespace Contract
     /// </summary>
     public interface INotificationService
     {
-        Boolean Create(/* argumenty śliśle zależą od przyjętego modelu notyfikacji */);
+        /// <summary>
+        /// Dodaje powiadomienie do bazy.
+        /// </summary>
+        /// <param name="eventPost">Dodawane powiadomienie</param>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
+        Boolean Create(INotification notification);
 
         /// <summary>
         /// Ustala stan powiadomienia.
         /// </summary>
-        /// <param name="notificationId">Unikalny identyfikator powiadomienia (GUID)</param>
+        /// <param name="notification">Powiadomienie</param>
         /// <param name="notificationStatus">Nowy stan powiadomienia</param>
-        /// <returns></returns>
-        Boolean SetNotificationStatus(Guid notificationId, NotificationStatus notificationStatus);
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
+        Boolean SetNotificationStatus(INotification notification, NotificationStatus notificationStatus);
 
         /// <summary>
         /// Wybiera powiadomienia użytkownika o jednym z zadanych statusów. Jeśli nie określono stanów, wybiera wszystkie.
         /// </summary>
-        /// <param name="appUserId">Unikalny identyfikator użytkownika (GUID)</param>
+        /// <param name="appUser">Użytkownik</param>
         /// <param name="acceptedStatuses">Kolekcja dopuszczlnych stanów powiadomienia</param>
         /// <returns>Kolekcja powiadomień</returns>
-        ICollection<INotification> GetUserNotifications(String appUserId, ICollection<NotificationStatus> acceptedStatuses = null);
+        ICollection<INotification> GetUserNotifications(IAppUser appUser, ICollection<NotificationStatus> acceptedStatuses = null);
     }
 }

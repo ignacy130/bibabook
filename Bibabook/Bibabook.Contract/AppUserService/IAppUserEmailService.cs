@@ -18,7 +18,7 @@ namespace Contract
         /// <param name="receiverEmailAddress">Adres odbiorcy</param>
         /// <param name="userName">Nazwa aktywowanego konta</param>
         /// <param name="userAccountActivationLink">Link aktywacyjny</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
         Boolean SendRegistrationVerificationEmail(String receiverEmailAddress, String userName, String userAccountActivationLink);
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Contract
         /// <param name="receiverEmailAddress">Adres odbiorcy</param>
         /// <param name="userName">Nazwa konta</param>
         /// <param name="userPassword">Hasło użytkownika</param>
-        /// <returns>Returns True if operation was completed successfully, else returns False.</returns>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
         Boolean RetrievePassword(String receiverEmailAddress, String userName, String userPassword);
 
         /// <summary>
