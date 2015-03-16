@@ -11,7 +11,7 @@ namespace Contract
         /// Dodaje nowy post do bazy.
         /// </summary>
         /// <param name="eventPost">Dodawany post</param>
-        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
+        /// <returns>Prawda jeśli wszystko prz ebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
         Boolean Create(IEventPost eventPost);
 
         /// <summary>
