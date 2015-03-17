@@ -1,4 +1,6 @@
 ﻿namespace Contract
 {
-    public interface IEventPost { }
+    public interface IEventPost {
+        string Content { get; set; }
+    }
 }
