@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AED1F02A-E2E0-410B-A8AC-7B9D45BFA65E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bibabook.Implementation</RootNamespace>
+    <AssemblyName>Bibabook.Implementation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppEventService\AppEventService.cs" />
+    <Compile Include="AppUserService\AppUserEmailService.cs" />
+    <Compile Include="AppUserService\AppUserService.cs" />
+    <Compile Include="AppUserService\AppUserSocialService.cs" />
+    <Compile Include="EmailService\EmailService.cs" />
+    <Compile Include="EventPost\EventPostService.cs" />
+    <Compile Include="Interfaces\Searchable.cs" />
+    <Compile Include="Models\AppEvent.cs" />
+    <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\Email.cs" />
+    <Compile Include="Models\EventPost.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\PostComment.cs" />
+    <Compile Include="NotificationService\NotificationService.cs" />
+    <Compile Include="NotificationService\NotificationStatus.cs" />
+    <Compile Include="PostComment\PostCommentService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportService\ReportInappropriateContentService.cs" />
+    <Compile Include="ReportService\ReportReason.cs" />
+    <Compile Include="SearchService\SearchHelpers\AdvancedSearchHelper.cs" />
+    <Compile Include="SearchService\SearchHelpers\SearchCondition.cs" />
+    <Compile Include="SearchService\SearchHelpers\SearchConditionType.cs" />
+    <Compile Include="SearchService\SearchHelpers\SearchHelper.cs" />
+    <Compile Include="SearchService\SearchHelpers\SearchParameters.cs" />
+    <Compile Include="SearchService\SearchService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bibabook.Contract\Bibabook.Contract.csproj">
+      <Project>{ff83a573-27d9-4ee4-a839-98d86bcda6e8}</Project>
+      <Name>Bibabook.Contract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
