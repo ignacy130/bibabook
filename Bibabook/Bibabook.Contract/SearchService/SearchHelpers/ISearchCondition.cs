@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contract.Enums;
+using System;
 
 namespace Contract
 {

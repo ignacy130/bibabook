@@ -199,17 +199,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AppEvent.cs" />
-    <Compile Include="Models\AppUser.cs" />
-    <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\Credentials.cs" />
-    <Compile Include="Models\Entity.cs" />
-    <Compile Include="Models\GeoCoordinate.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\FriendInvitation.cs" />
-    <Compile Include="Models\Place.cs" />
-    <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -285,6 +276,10 @@
     <ProjectReference Include="..\Bibabook.Contract\Bibabook.Contract.csproj">
       <Project>{ff83a573-27d9-4ee4-a839-98d86bcda6e8}</Project>
       <Name>Bibabook.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bibabook.Implementation\Bibabook.Implementation.csproj">
+      <Project>{aed1f02a-e2e0-410b-a8ac-7b9d45bfa65e}</Project>
+      <Name>Bibabook.Implementation</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

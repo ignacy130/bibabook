@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Contract;
 
-namespace Bibabook.Implementation.Models
+namespace Bibabook.Models
 {
-    public class Notification : INotification
+    public class Notification : Entity
     {
+        public string Json { get; set; }
+        public bool Receivied { get; set; }
     }
 }

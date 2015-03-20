@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Contract;
+using Contract.Enums;
 
 namespace Bibabook.Implementation.SearchService.SearchHelpers
 {
@@ -33,7 +34,7 @@ namespace Bibabook.Implementation.SearchService.SearchHelpers
             }
         }
 
-        public Contract.SearchConditionType ConditionType
+        public SearchConditionType ConditionType
         {
             get
             {

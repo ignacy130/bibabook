@@ -11,10 +11,5 @@ namespace Bibabook.Models
         public AppUser Recipient { get; set; }
 
     }
-    static class NotificationType
-    {
-        enum Friend { Invitation, InvitationConfirmed, }
-
-        enum Event { Invitation, Canceled, Changed, Post, PostReply, }
-    }
+    
 }

@@ -9,5 +9,16 @@ namespace Bibabook.Implementation.Models
 {
     public class EventPost : IEventPost
     {
+        public string Content
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
