@@ -8,6 +8,11 @@ using Contract.Enums;
 
 namespace Bibabook.Implementation.NotificationService
 {
+    /// <summary>
+    /// odpowiedzialny za powiadamianie uzytkowników o zdarzeniach w aplikacji takich jak:
+    /// zaproszenia na wydarzenie, zmiana parametrów wydarzenia,
+    /// otrzymanie zaproszenia do grona znajomych
+    /// </summary>
     public class NotificationService : INotificationService
     {
         public bool Create(INotification notification)

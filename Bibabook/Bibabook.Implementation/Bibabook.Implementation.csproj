@@ -40,17 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppEventService\AppEventService.cs" />
-    <Compile Include="AppUserService\AppUserEmailService.cs" />
-    <Compile Include="AppUserService\AppUserService.cs" />
-    <Compile Include="AppUserService\AppUserSocialService.cs" />
+    <Compile Include="AppEventService\EventsService.cs" />
+    <Compile Include="AppUserService\EmailUsersService.cs" />
+    <Compile Include="AppUserService\UsersService.cs" />
+    <Compile Include="AppUserService\SocialService.cs" />
     <Compile Include="EmailService\EmailService.cs" />
     <Compile Include="EventPost\EventPostService.cs" />
     <Compile Include="Interfaces\Searchable.cs" />
     <Compile Include="Models\AppEvent.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\AppUser.cs">
+    <Compile Include="Models\User.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Comment.cs" />
