@@ -7,7 +7,7 @@ using Contract.Enums;
 
 namespace Bibabook.Models
 {
-    public class AppUser : Entity
+    public class AppUser : Entity, IAppUser
     {
         public string Name { get; set; }
         public string Surname { get; set; }

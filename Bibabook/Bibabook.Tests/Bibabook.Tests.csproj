@@ -82,8 +82,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppEventService\EventServiceTest.cs" />
+    <Compile Include="AppUserService\EmailUsersServiceTest.cs" />
+    <Compile Include="AppUserService\UserSocialServiceTest.cs" />
+    <Compile Include="AppUserService\UserServiceTest.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="EmailService\EmailServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -92,6 +97,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bibabook.Contract\Bibabook.Contract.csproj">
+      <Project>{FF83A573-27D9-4EE4-A839-98D86BCDA6E8}</Project>
+      <Name>Bibabook.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bibabook.Implementation\Bibabook.Implementation.csproj">
+      <Project>{AED1F02A-E2E0-410B-A8AC-7B9D45BFA65E}</Project>
+      <Name>Bibabook.Implementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bibabook\Bibabook.csproj">
       <Project>{8612FE75-74A9-4EC0-8CFF-98F25EA17EEC}</Project>
       <Name>Bibabook</Name>

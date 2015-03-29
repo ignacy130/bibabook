@@ -33,7 +33,7 @@ namespace Contract
         /// <summary>
         /// Wysyła e-mail z konta systemu.
         /// </summary>
-        /// <param name="receiverEmailAddress">Adresy odbiorców</param>
+        /// <param name="receiversEmailAddresses">Adresy odbiorców</param>
         /// <param name="subject">Temat wiadomości</param>
         /// <param name="message">Treść</param>
         /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
