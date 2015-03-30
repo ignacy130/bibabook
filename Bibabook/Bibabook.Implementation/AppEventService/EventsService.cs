@@ -31,12 +31,12 @@ namespace Bibabook.Implementation.AppEventService
             throw new NotImplementedException();
         }
 
-        public bool InviteUser(IAppUser appEvent, IAppUser sender, ICollection<IAppUser> recipients)
+        public bool InviteUser(IAppEvent appEvent, IAppUser sender, ICollection<IAppUser> recipients)
         {
             throw new NotImplementedException();
         }
 
-        public bool EnrollUser(IAppUser appEvent, IAppUser appUser)
+        public bool EnrollUser(IAppEvent appEvent, IAppUser appUser)
         {
             throw new NotImplementedException();
         }

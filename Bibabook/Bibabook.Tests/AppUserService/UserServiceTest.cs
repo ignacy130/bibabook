@@ -82,7 +82,7 @@ namespace Bibabook.Tests.AppUserService
         /// Testuje czy metoda zwraca true dla poprawnych danych.
         /// </summary>
         [TestMethod]
-        public void BanUserPassesForGoodAppUser()
+        public void BanUserPassesForCorrectData()
         {
             Boolean result = appUserService.BanUser(appUser, DateTime.Now);
             Assert.IsTrue(result);

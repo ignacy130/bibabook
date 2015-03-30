@@ -12,7 +12,7 @@ namespace Contract
         /// Dodaje wydarzenia do bazy danych.
         /// </summary>
         /// <param name="appEvent">Wydarzenie, które należy umieścić w bazie.</param>
-        /// <returns></returns>
+        /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
         Boolean Create(IAppEvent appEvent);
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Contract
         /// <param name="sender">Użytkownik zapraszający</param>
         /// <param name="recipients">Adresaci zaproszenia</param>
         /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
-        Boolean InviteUser(IAppUser appEvent, IAppUser sender, ICollection<IAppUser> recipients);
+        Boolean InviteUser(IAppEvent appEvent, IAppUser sender, ICollection<IAppUser> recipients);
 
         /// <summary>
         /// Zapisuje użytkownika na wydarzenie.
@@ -58,7 +58,7 @@ namespace Contract
         /// <param name="appEvent">Instancja wydarzenia</param>
         /// <param name="appUser">Zapisywany użytkownik</param>
         /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
-        Boolean EnrollUser(IAppUser appEvent, IAppUser appUser);
+        Boolean EnrollUser(IAppEvent appEvent, IAppUser appUser);
 
         /// <summary>
         /// Wypisuje użytkownika z wydarzenia. Użytkownik może wypisać się sam, może zostać wyproszony przez
@@ -104,6 +104,6 @@ namespace Contract
         /// <returns>Prawda jeśli wszystko przebiegło bez problemów. Fałsz w przeciwnym przypadku.</returns>
         Boolean AddEventPost(IAppEvent appEvent, IEventPost eventPost);
 
-        // + Dodać metody związane ze zmianą parametrów.
+        // TODO: + Dodać metody związane ze zmianą parametrów.
     }
 }

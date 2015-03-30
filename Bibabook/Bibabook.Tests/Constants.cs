@@ -18,6 +18,7 @@ namespace Bibabook.Tests
         public const String CORRECT_AVATAR_PATH = "/my/folder/pic.jpg";
         public const String CORRECT_SUBJECT = "Dowolny temat";
         public const String CORRECT_MESSAGE = "Jeżeli to czytasz postaw kreskę: |";
+        public const String CORRECT_COMMENT = "Shitstorm begins in 3.. 2.. 1";
 
         public const String WRONG_EMAIL = "completly @ wrong @ email.";
         public const String WRONG_ACTIVATION_LINK = "thats_not proper!linkAT  all";

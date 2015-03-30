@@ -6,7 +6,7 @@ using Contract;
 
 namespace Bibabook.Models
 {
-    public class Comment : Entity, IEventPost
+    public class Comment : Entity, IEventPost, IPostComment
     {
         public string Content { get; set; }
     }

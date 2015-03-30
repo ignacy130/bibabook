@@ -6,7 +6,7 @@ using Contract;
 
 namespace Bibabook.Models
 {
-    public class AppEvent : Entity
+    public class AppEvent : Entity, IAppEvent
     {
         public string Name {get;set;}
         public string Description {get;set;}

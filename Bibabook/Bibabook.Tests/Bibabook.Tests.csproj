@@ -88,6 +88,9 @@
     <Compile Include="AppUserService\UserServiceTest.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="EmailService\EmailServiceTest.cs" />
+    <Compile Include="EventPost\EventPostServiceTest.cs" />
+    <Compile Include="NotificationService\NotificationServiceTest.cs" />
+    <Compile Include="PostComment\PostCommentServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -23,18 +23,6 @@ namespace Bibabook.Tests.AppUserService
         }
 
         /// <summary>
-        /// Metoda testuje czy właściwość zwraca dokładnie ten sam obiekt który zosał do niego przekazany.
-        /// </summary>
-        [TestMethod]
-        public void CheckProperty()
-        {
-            IEmailService iEmailService = new Implementation.EmailService.EmailService();
-            appUserEmail.EmailService = iEmailService;
-            Object gettedObject = appUserEmail.EmailService;
-            Assert.AreEqual(iEmailService, gettedObject);
-        }
-
-        /// <summary>
         /// Test sprawdza czy dla poprawnych danych metoda zwraca true.
         /// </summary>
         [TestMethod]
