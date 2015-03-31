@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using Ninject;
 using Ninject.Modules;
-using Implementation;
+using Bibabook.Implementation;
 using Contract;
+using Bibabook.Implementation.Models;
+using Bibabook.Models;
 
 namespace Bibabook.Container.Modules
 {
@@ -13,12 +15,12 @@ namespace Bibabook.Container.Modules
     {
         public override void Load()
         {
-            Bind<IAppEvent>().To<Implementation.Models.AppEvent>();
-            Bind<IAppUser>().To<Implementation.Models.AppUser>();
-            Bind<IEmail>().To<Implementation.Models.Email>();
-            Bind<IEventPost>().To<Implementation.Models.EventPost>();
-            Bind<INotification>().To<Implementation.Models.Notification>();
-            Bind<IPostComment>().To<Implementation.Models.PostComment>();
+            Bind<IAppEvent>().To<AppEvent>();
+            Bind<IAppUser>().To<AppUser>();
+            Bind<IEmail>().To<Email>();
+            Bind<IEventPost>().To<EventPost>();
+            Bind<INotification>().To<Notification>();
+            Bind<IPostComment>().To<Post>();
         }
     }
 }

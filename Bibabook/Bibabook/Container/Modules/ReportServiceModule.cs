@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Ninject;
 using Ninject.Modules;
-using Implementation;
+using Bibabook.Implementation;
 using Contract;
 
 namespace Bibabook.Container.Modules

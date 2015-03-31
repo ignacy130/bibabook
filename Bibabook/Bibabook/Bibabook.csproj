@@ -77,6 +77,9 @@
     <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -190,6 +193,17 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Container\Configuration.cs" />
+    <Compile Include="Container\Modules\AppEventServiceModule.cs" />
+    <Compile Include="Container\Modules\AppUserServiceModule.cs" />
+    <Compile Include="Container\Modules\EmailServiceModule.cs" />
+    <Compile Include="Container\Modules\EventPostModule.cs" />
+    <Compile Include="Container\Modules\InterfacesModule.cs" />
+    <Compile Include="Container\Modules\ModelsModule.cs" />
+    <Compile Include="Container\Modules\NotificationServiceModule.cs" />
+    <Compile Include="Container\Modules\PostCommentModule.cs" />
+    <Compile Include="Container\Modules\ReportServiceModule.cs" />
+    <Compile Include="Container\Modules\SearchServiceModule.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -281,6 +295,9 @@
       <Project>{aed1f02a-e2e0-410b-a8ac-7b9d45bfa65e}</Project>
       <Name>Bibabook.Implementation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

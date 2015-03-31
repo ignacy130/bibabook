@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using Ninject;
 using Ninject.Modules;
-using Implementation;
+using Bibabook.Implementation;
 using Contract;
+using Bibabook.Implementation.AppEventService;
 
 namespace Bibabook.Container.Modules
 {
@@ -13,7 +14,7 @@ namespace Bibabook.Container.Modules
     {
         public override void Load()
         {
-            Bind<IAppEventService>().To<Implementation.AppEventService.AppEventService>();
+            Bind<IAppEventService>().To<EventsService>();
         }
     }
 }

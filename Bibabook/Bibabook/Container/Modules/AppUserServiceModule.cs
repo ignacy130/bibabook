@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using Ninject;
 using Ninject.Modules;
-using Implementation;
+using Bibabook.Implementation;
 using Contract;
+using Bibabook.Implementation.AppUserService;
 
 namespace Bibabook.Container.Modules
 {
@@ -13,9 +14,10 @@ namespace Bibabook.Container.Modules
     {
         public override void Load()
         {
-            Bind<IAppUserEmailService>().To<Implementation.AppUserService.AppUserEmailService>();
-            Bind<IAppUserService>().To<Implementation.AppUserService.AppUserService>();
-            Bind<IAppUserSocialService>().To<Implementation.AppUserService.AppUserSocialService>();
+            //Bind<IAppUserEmailService>().To<EmailService>(); TODO proper
+            //appuseremailservice implementation - in accordance with contract
+            Bind<IAppUserService>().To<UsersService>();
+            Bind<IAppUserSocialService>().To<SocialService>();
         }
     }
 }
