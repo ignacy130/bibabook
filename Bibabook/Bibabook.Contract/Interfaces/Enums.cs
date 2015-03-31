@@ -68,5 +68,14 @@
         Contains
     }
 
+    /// <summary>
+    /// Widoczność zdarzenia
+    /// </summary>
+    public enum Privacy
+    {
+        Private,
+        Public
+    }
+        
 
 }

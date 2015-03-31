@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using Bibabook.Models;
+using Bibabook.Implementation.Models;
 
 namespace Bibabook.DAL
 {
@@ -14,7 +14,6 @@ namespace Bibabook.DAL
             : base("DataBaseContext")
         {
         }
-
         public DbSet<AppEvent> AppEvents { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Comment> Comments { get; set; }
