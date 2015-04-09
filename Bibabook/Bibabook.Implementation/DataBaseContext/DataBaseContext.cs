@@ -6,14 +6,15 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Bibabook.Implementation.Models;
 
-namespace Bibabook.DAL
+namespace Bibabook.Implementation.DatabaseContext
 {
     public class DataBaseContext : DbContext
     {
         public DataBaseContext()
-            : base("DataBaseContext")
+            : base("DB_Bibabook")
         {
         }
+
         public DbSet<AppEvent> AppEvents { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Comment> Comments { get; set; }
@@ -29,6 +30,7 @@ namespace Bibabook.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
         }
-    }
 
+
+    }
 }

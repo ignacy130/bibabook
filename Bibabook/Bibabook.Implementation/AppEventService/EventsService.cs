@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Contract;
+using Bibabook.Implementation.DatabaseContext;
+using Bibabook.Implementation.Models;
 namespace Bibabook.Implementation.AppEventService
 {
     /// <summary>
@@ -11,9 +13,20 @@ namespace Bibabook.Implementation.AppEventService
     /// </summary>
     public class EventsService :IAppEventService
     {
+        private DataBaseContext context;
+
+
+        public EventsService() { } // ten konstruktor stworzony tylko po to żeby test się nie sypał 
+        public EventsService(DataBaseContext ctx)
+        {
+            this.context = ctx;
+        }
+
         public bool Create(IAppEvent appEvent)
         {
-            throw new NotImplementedException();
+            context.AppEvents.Add((AppEvent)appEvent);
+            context.SaveChanges();
+            return true;
         }
 
         public bool Cancel(IAppEvent appEvent)

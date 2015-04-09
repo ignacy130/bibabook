@@ -3,6 +3,7 @@ using Bibabook.Implementation.AppUserService;
 using Bibabook.Models;
 using Contract;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Bibabook.Implementation.Models;
 
 namespace Bibabook.Tests.AppUserService
 {

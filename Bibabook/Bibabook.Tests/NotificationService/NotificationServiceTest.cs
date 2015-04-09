@@ -4,6 +4,7 @@ using Bibabook.Models;
 using Contract;
 using Contract.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Bibabook.Implementation.Models;
 
 namespace Bibabook.Tests.NotificationService
 {
