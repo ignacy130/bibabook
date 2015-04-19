@@ -11,7 +11,7 @@ namespace Bibabook.Implementation.DatabaseContext
     public class DataBaseContext : DbContext
     {
         public DataBaseContext()
-            : base("DB_Bibabook")
+            : base("BibabookDB")
         {
         }
 
