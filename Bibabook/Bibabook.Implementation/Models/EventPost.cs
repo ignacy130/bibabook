@@ -12,16 +12,6 @@ namespace Bibabook.Implementation.Models
     {
         public Guid EventPostID { get; set; }
         [StringLength(3000)]
-        public string Content
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public string Content{ get; set; }
     }
 }

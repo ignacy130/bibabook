@@ -11,53 +11,10 @@ namespace Bibabook.Implementation.Models
     public class Email : IEmail
     {
         public Guid EmailID { get; set; }
-        public DateTime Date
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string RecipientEmail
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string Subject
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
+        public DateTime Date { get; set; }
+        public string RecipientEmail { get; set; }
+        public string Subject { get; set; }
         [StringLength(3000)]
-        public string Content
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public string Content { get; set; }
     }
 }
