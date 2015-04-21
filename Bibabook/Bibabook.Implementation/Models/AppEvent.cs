@@ -9,6 +9,7 @@ namespace Bibabook.Implementation.Models
 {
     public class AppEvent : Entity, IAppEvent
     {
+        public Guid AppEventID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public bool AdultsOnly { get; set; }
@@ -16,7 +17,7 @@ namespace Bibabook.Implementation.Models
         public DateTime TimeEnd { get; set; }
         public AppUser Host { get; set; }
         public ICollection<AppUser> Guests { get; set; }
-        public ICollection<IEventPost> Posts { get; set; }
+        public ICollection<EventPost> Posts { get; set; }
         public Decimal EntryFee { get; set; }
         public bool IsActive { get; set; }
         public Privacy Privacy { get; set; }

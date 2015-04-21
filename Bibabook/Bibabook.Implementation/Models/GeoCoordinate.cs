@@ -7,6 +7,7 @@ namespace Bibabook.Implementation.Models
 {
     public class GeoCoordinate
     {
+        public Guid GeoCoordinateID { get; set; }
         public double Altitude { get; set; }
         public double Course { get; set; }
         public double HorizontalAccuracy { get; set; }

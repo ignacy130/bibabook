@@ -10,6 +10,7 @@ namespace Bibabook.Implementation.Models
 
     public class AppUser : Entity, IAppUser
     {
+        public Guid AppUserID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
@@ -20,7 +21,7 @@ namespace Bibabook.Implementation.Models
         public virtual ICollection<AppUser> Friends { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
         public virtual ICollection<AppEvent> Events { get; set; }
-        public virtual ICollection<IEventPost> Posts { get; set; }
+        public virtual ICollection<EventPost> Posts { get; set; }
 
     }
 }

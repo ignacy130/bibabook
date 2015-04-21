@@ -9,9 +9,9 @@ namespace Bibabook.Implementation.Models
 {
     public class Post : Entity, IPostComment
     {
+        public Guid PostID { get; set; }
         [StringLength(3000)]
         public string Content{get;set;}
         public virtual ICollection<Comment> Comments { get; set; }
-
     }
 }

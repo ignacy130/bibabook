@@ -8,6 +8,7 @@ namespace Bibabook.Implementation.Models
 {
     public class Place : Entity
     {
+        public Guid PlaceID { get; set; }
         public string Name { get; set; }
         [StringLength(3000)]
         public string Description { get; set; }

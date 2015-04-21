@@ -9,6 +9,7 @@ namespace Bibabook.Implementation.Models
 {
     public class Comment : Entity, IEventPost, IPostComment
     {
+        public Guid CommentID { get; set; }
         [StringLength(3000)]
         public string Content { get; set; }
     }

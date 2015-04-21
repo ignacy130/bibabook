@@ -10,6 +10,7 @@ namespace Bibabook.Implementation.Models
 {
     public class Email : IEmail
     {
+        public Guid EmailID { get; set; }
         public DateTime Date
         {
             get

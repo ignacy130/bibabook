@@ -10,6 +10,7 @@ namespace Bibabook.Implementation.Models
 {
     public class EventPost : IEventPost
     {
+        public Guid EventPostID { get; set; }
         [StringLength(3000)]
         public string Content
         {
