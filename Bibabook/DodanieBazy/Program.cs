@@ -19,7 +19,7 @@ namespace DodanieBazy
                     public DateTime Modified { get; set; }
                     public bool Deleted { get; set; }
             */
-            var db = new DataBaseContext();
+            var db = new DataBaseContext();            
             
             Credentials credentials = new Credentials();
             credentials.CredentialsID = Guid.NewGuid();
@@ -27,7 +27,7 @@ namespace DodanieBazy
             credentials.Hash = "#####";
 
             //db.Credentials.Add(credentials);
-            db.SaveChanges();
+            //db.SaveChanges();
             AppUser appuser = new AppUser();
             appuser.AppUserID = Guid.NewGuid();
 
@@ -76,7 +76,7 @@ namespace DodanieBazy
             eventpost.EventPostID = Guid.NewGuid();
             eventpost.Content = "Super opis super miejsca gdzie trudno się dostać, bo jest na drugim końcu miasta";
 
-            //db.EventPosts.Add(eventpost);
+            db.EventPosts.Add(eventpost);
             db.SaveChanges();
 
             AppEvent appevent = new AppEvent();
@@ -164,7 +164,7 @@ namespace DodanieBazy
             place.Modified = DateTime.Now;
             place.Deleted = false;
 
-            //db.Places.Add(place);
+            db.Places.Add(place);
             db.SaveChanges();
 
             Post post = new Post();
@@ -177,10 +177,10 @@ namespace DodanieBazy
             post.Modified = DateTime.Now;
             post.Deleted = false;
 
-            //db.Posts.Add(post);
+            var asd = db.Posts.Add(post);
 
 
-            db.SaveChanges();
+           var c= db.SaveChanges();
         }
     }
 }
