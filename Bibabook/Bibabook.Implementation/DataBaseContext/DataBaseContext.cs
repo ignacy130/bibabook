@@ -20,7 +20,6 @@ namespace Bibabook.Implementation.DatabaseContext
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Credentials> Credentials { get; set; }
-        public DbSet<Entity> Entities { get; set; }
         public DbSet<Bibabook.Implementation.Models.EventPost> EventPosts { get; set; }
         public DbSet<FriendInvitation> FriendInvatations { get; set; }
         public DbSet<GeoCoordinate> GeoCoordinates { get; set; }
