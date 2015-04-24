@@ -57,6 +57,11 @@
     <Compile Include="EmailService\EmailService.cs" />
     <Compile Include="EventPost\EventPostService.cs" />
     <Compile Include="Interfaces\Searchable.cs" />
+    <Compile Include="Migrations\201504240913258_Initial.cs" />
+    <Compile Include="Migrations\201504240913258_Initial.Designer.cs">
+      <DependentUpon>201504240913258_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppEvent.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,6 +101,11 @@
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201504240913258_Initial.resx">
+      <DependentUpon>201504240913258_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

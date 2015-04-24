@@ -19,15 +19,21 @@ namespace DodanieBazy
                     public DateTime Modified { get; set; }
                     public bool Deleted { get; set; }
             */
-            var db = new DataBaseContext();            
-            
-            Credentials credentials = new Credentials();
+            var db = new DataBaseContext();
+            var users = db.AppUsers;
+            foreach (var item in users)
+            {
+                Console.WriteLine(item.Email);
+            }
+            Console.ReadLine();
+            var c = 0;
+           /* Credentials credentials = new Credentials();
             credentials.CredentialsID = Guid.NewGuid();
             credentials.Salt = "asdasd";
             credentials.Hash = "#####";
 
-            //db.Credentials.Add(credentials);
-            //db.SaveChanges();
+            db.Credentials.Add(credentials);
+            db.SaveChanges();
             AppUser appuser = new AppUser();
             appuser.AppUserID = Guid.NewGuid();
 
@@ -180,7 +186,7 @@ namespace DodanieBazy
             var asd = db.Posts.Add(post);
 
 
-           var c= db.SaveChanges();
+           var c= db.SaveChanges();*/
         }
     }
 }
