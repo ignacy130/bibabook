@@ -28,8 +28,8 @@ namespace Bibabook.Implementation.AppUserService
 
         public bool CreateAccount(IAppUser user)
         {
-            int user_test = context.AppUsers.Count(u => u.Email == ((AppUser)user).Email); //weryfikacja po email czy juz ktos istnieje z takim mailem
-            if ((user is AppUser) && user_test == 0)
+            bool user_test = context.AppUsers.Any(u => u.Email == ((AppUser)user).Email); //weryfikacja po email czy juz ktos istnieje z takim mailem
+            if ((user is AppUser) && user_test)
             {
                 try
                 {
@@ -37,9 +37,9 @@ namespace Bibabook.Implementation.AppUserService
                     context.SaveChanges();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    return false;
+                    throw e;
                 }
             }
             else
@@ -87,9 +87,9 @@ namespace Bibabook.Implementation.AppUserService
                     context.SaveChanges();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    return false;
+                    throw e;
                 }
             }
             else
@@ -110,9 +110,9 @@ namespace Bibabook.Implementation.AppUserService
                     context.SaveChanges();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    return false;
+                    throw e;
                 }
             }
             else
@@ -137,9 +137,9 @@ namespace Bibabook.Implementation.AppUserService
                     context.SaveChanges();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    return false;
+                    throw e;
                 }
             }
             else
