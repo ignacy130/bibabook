@@ -17,6 +17,11 @@ namespace Bibabook.Implementation.AppUserService
     {
         INotificationService _notificationService;
         DataBaseContext _context;
+        public SocialService()
+        {
+
+        }
+
         public SocialService(INotificationService notificationService)
         {
             _context = new DataBaseContext();
