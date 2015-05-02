@@ -25,7 +25,11 @@ namespace Bibabook
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/header.css",
+                      "~/Content/style.css",
+                      "~/Content/style_event.css"
+                      ));
         }
     }
 }
