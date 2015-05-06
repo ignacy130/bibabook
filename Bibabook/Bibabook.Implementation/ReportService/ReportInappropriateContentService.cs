@@ -9,17 +9,17 @@ namespace Bibabook.Implementation.ReportService
     public class ReportInappropriateContentService : IReportInappropriateContentService
     {
 
-        public void ReportEvent(IAppEvent userReporting, IAppEvent eventReported, ReportReason reason)
+        public void ReportEvent(IAppUser userReporting, IAppEvent eventReported, ReportReason reason)
         {
             throw new NotImplementedException();
         }
 
-        public void ReportPost(IAppEvent userReporting, IEventPost postReported, ReportReason reason)
+        public void ReportPost(IAppUser userReporting, IEventPost postReported, ReportReason reason)
         {
             throw new NotImplementedException();
         }
 
-        public void ReportComment(IAppEvent userReporting, IPostComment postComment, ReportReason reason)
+        public void ReportComment(IAppUser userReporting, IPostComment postComment, ReportReason reason)
         {
             throw new NotImplementedException();
         }
