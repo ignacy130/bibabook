@@ -14,12 +14,12 @@ namespace Bibabook.Controllers
         IAppUserSocialService _socialService;
         IKernel container = Container.Configuration.CONTAINER;
         
-        public ActionResult Index(IAppUserSocialService socialService)
+        public ActionResult Index()
         {
-            IAppUserSocialService aa = container.Get<IAppUserSocialService>();
+            IAppEventService aa = container.Get<IAppEventService>();
             //IAppUser bb = new AppUser();
             //aa.SendFriendInvitation();
-            _socialService = socialService;
+            //_socialService = socialService;
             return View();
         }
 
@@ -32,7 +32,7 @@ namespace Bibabook.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-            _socialService.
+            //_socialService.
             return View();
         }
     }
