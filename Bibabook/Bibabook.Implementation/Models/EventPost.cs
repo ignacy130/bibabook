@@ -13,5 +13,7 @@ namespace Bibabook.Implementation.Models
         public Guid EventPostID { get; set; }
         [StringLength(3000)]
         public string Content{ get; set; }
+        public IAppUser Author { get; set; } //dodany Autor postu
+   
     }
 }
