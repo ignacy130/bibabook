@@ -17,6 +17,8 @@ namespace Bibabook.Implementation.Models
         public Credentials Credentials { get; set; }
         public DateTime Birthday { get; set; }
         public Sex Sex { get; set; }
+        public bool IsVerified { get; set; }
+        public bool IsActive { get; set; }
         public string Avatar { get; set; }
         public virtual ICollection<AppUser> Friends { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
