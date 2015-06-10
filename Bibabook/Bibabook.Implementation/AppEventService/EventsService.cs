@@ -36,17 +36,29 @@ namespace Bibabook.Implementation.AppEventService
 
         public bool Delete(IAppEvent appEvent)
         {
-            throw new NotImplementedException();
+            var ee = context.Entry((AppEvent)appEvent).Entity;
+            context.AppEvents.Remove(ee);
+            context.SaveChanges();
+            return true;
         }
 
         public bool InviteUser(IAppEvent appEvent, IAppUser sender, IAppUser recipient)
         {
-            throw new NotImplementedException();
+            var ee = context.Entry((AppEvent)appEvent).Entity;
+            ee.Guests.Add((AppUser)recipient);
+            context.SaveChanges();
+            return true;
         }
 
         public bool InviteUser(IAppEvent appEvent, IAppUser sender, ICollection<IAppUser> recipients)
         {
-            throw new NotImplementedException();
+            var ee = context.Entry((AppEvent)appEvent).Entity;
+            foreach (var item in recipients)
+            {
+                ee.Guests.Add((AppUser)item);
+            }
+            context.SaveChanges();
+            return true;
         }
 
         public bool EnrollUser(IAppEvent appEvent, IAppUser appUser)
@@ -76,7 +88,10 @@ namespace Bibabook.Implementation.AppEventService
 
         public bool AddEventPost(IAppEvent appEvent, IEventPost eventPost)
         {
-            throw new NotImplementedException();
+            var ee = context.Entry((AppEvent)appEvent).Entity;
+            ee.Posts.Add((Models.EventPost)eventPost);
+            context.SaveChanges();
+            return true;
         }
     }
 }
