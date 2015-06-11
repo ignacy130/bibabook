@@ -15,7 +15,6 @@ namespace Bibabook.Implementation.AppEventService
     {
         private DataBaseContext context;
 
-
         public EventsService() { } // ten konstruktor stworzony tylko po to żeby test się nie sypał 
         public EventsService(DataBaseContext ctx)
         {
@@ -52,10 +51,10 @@ namespace Bibabook.Implementation.AppEventService
 
         public bool InviteUser(IAppEvent appEvent, IAppUser sender, ICollection<IAppUser> recipients)
         {
-            var ee = context.Entry((AppEvent)appEvent).Entity;
+            var eventEntry = context.Entry((AppEvent)appEvent).Entity;
             foreach (var item in recipients)
             {
-                ee.Guests.Add((AppUser)item);
+                eventEntry.Guests.Add((AppUser)item);
             }
             context.SaveChanges();
             return true;
