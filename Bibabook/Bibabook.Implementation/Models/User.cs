@@ -25,5 +25,12 @@ namespace Bibabook.Implementation.Models
         public virtual ICollection<AppEvent> Events { get; set; }
         public virtual ICollection<EventPost> Posts { get; set; }
 
+        public AppUser()
+        {
+            this.Friends = new List<AppUser>();
+            this.Events = new List<AppEvent>();
+            this.Posts = new List<EventPost>();
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Bibabook.Implementation.AppUserService;
+using Bibabook.Implementation.Models;
 using Contract;
 using Ninject;
 using System;
@@ -16,10 +17,10 @@ namespace Bibabook.Controllers
         
         public ActionResult Index()
         {
-            IAppEventService aa = container.Get<IAppEventService>();
-            //IAppUser bb = new AppUser();
-            //aa.SendFriendInvitation();
-            //_socialService = socialService;
+            IAppUserSocialService aa = container.Get<IAppUserSocialService>();
+            _socialService = aa;
+            IAppUser bb = new AppUser();
+            aa.FriendUsers(new AppUser(), new AppUser());
             return View();
         }
 
