@@ -34,9 +34,9 @@
 
                     <ul class="nav navbar-nav" id="operations">
                         
-                        <li>@Html.ActionLink("Add event", "Create", "AppEvents")</li>
-                        <li>@Html.ActionLink("Events", "Index", "AppEvents")</li>
-                        <li>@Html.ActionLink("My friends", "MyFriends", "AppUsers")</li>
+                        <li>@Html.ActionLink("Dodaj wydarzenie", "Create", "AppEvents")</li>
+                        <li>@Html.ActionLink("Wszystkie wydarzenia", "List", "AppEvents")</li>
+                        <li>@Html.ActionLink("Znajomi", "MyFriends", "AppUsers")</li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" style="color:red;" data-toggle="dropdown" role="button" aria-expanded="false">
                                 @ViewBag.EventCount <span class="caret"></span>
@@ -50,7 +50,7 @@
                         </li>
                     </ul>
                     <div class="navbar-right">
-                        <img src="Images/portret.png" class="img-responsive" style="height:40px;" alt="Profile picture">
+                        
                     </div>
                 </div>
             </nav>

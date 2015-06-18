@@ -13,6 +13,7 @@ using Contract;
 using Ninject;
 using Bibabook.DAL;
 using Bibabook.Filters;
+using Bibabook.Models;
 
 namespace Bibabook.Contollers
 {
@@ -60,24 +61,30 @@ namespace Bibabook.Contollers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AppEventID,Name,Description,AdultsOnly,TimeStart,TimeEnd,EntryFee,IsActive,Privacy,Background,EntityID,Created,Modified,Deleted")] AppEvent appEvent)
+        public ActionResult Create(EventCreateViewModel model)
         {
-            if (ModelState.IsValid)
+            AppEvent appEvent = new AppEvent
             {
-                appEvent.AppEventID = Guid.NewGuid();
-                appEvent.Host = UserHelper.GetLogged(Session);
-                eventsService.Create(appEvent);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+                AppEventID = Guid.NewGuid(),
+                Name = model.Name,
+                Description = model.Description,
+                AdultsOnly = model.AdultsOnly,
+                TimeStart = model.TimeStart,
+                TimeEnd = model.TimeEnd,
+                EntryFee = model.EntryFee,
+                IsActive = true,
+                Background = model.Background,
+                Host = UserHelper.GetLogged(Session)
+            };
+            eventsService.Create(appEvent);
 
-            return View(appEvent);
+            return View("Details", new EventDetailsViewModel(appEvent));
         }
 
-        public PartialViewResult Search(string name)
+        public ActionResult Search(string name)
         {
             var events = db.AppEvents.Where(x => x.Name.Contains(name) || x.Description.Contains(name)).ToList();
-            return PartialView("PublicIndex", events);
+            return View("List", events);
         }
 
         public ActionResult JoinParty([Bind(Include="partyId")]Guid partyId)

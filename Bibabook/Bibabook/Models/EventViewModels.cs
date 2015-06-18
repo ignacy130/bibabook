@@ -1,4 +1,5 @@
 ﻿using Bibabook.Implementation.Models;
+using Contract;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,7 +42,22 @@ namespace Bibabook.Models
 
     public class EventDetailsViewModel
     {
-        
+        public EventDetailsViewModel(AppEvent model)
+        {
+            AppEventID = model.AppEventID;
+            Name = model.Name;
+            Description = model.Description;
+            AdultsOnly = model.AdultsOnly;
+            TimeStart = model.TimeStart;
+            TimeEnd = model.TimeEnd;
+            Host = model.Host;
+            Guests = model.Guests;
+            Posts = model.Posts;
+            EntryFee = model.EntryFee;
+            IsActive = model.IsActive;
+            Background = model.Background;
+        }
+
         public bool Enrolled { get; set; }
 
         [DisplayName("Numer id wydarzenia")]

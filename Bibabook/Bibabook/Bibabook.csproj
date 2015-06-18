@@ -92,6 +92,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -99,7 +100,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
@@ -301,22 +301,20 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Today.cshtml" />
-    <Content Include="Views\AppUsers\Create.cshtml" />
-    <Content Include="Views\AppUsers\Delete.cshtml" />
-    <Content Include="Views\AppUsers\Details.cshtml" />
-    <Content Include="Views\AppUsers\Edit.cshtml" />
-    <Content Include="Views\AppUsers\Index.cshtml" />
-    <Content Include="Views\AppEvents\Create.cshtml" />
-    <Content Include="Views\AppEvents\Delete.cshtml" />
-    <Content Include="Views\AppEvents\Details.cshtml" />
-    <Content Include="Views\AppEvents\Edit.cshtml" />
-    <Content Include="Views\AppEvents\Index.cshtml" />
-    <Content Include="Views\AppUsers\PublicIndex.cshtml" />
-    <Content Include="Views\AppEvents\PublicIndex.cshtml" />
+    <Content Include="Views\AppUsers\ChangePassword.cshtml" />
+    <Content Include="Views\AppUsers\EditProfile.cshtml" />
     <Content Include="Views\AppUsers\Login.cshtml" />
+    <Content Include="Views\AppUsers\Register.cshtml" />
+    <Content Include="Views\AppUsers\ResetPassword.cshtml" />
+    <Content Include="Views\AppUsers\List.cshtml" />
+    <Content Include="Views\AppUsers\Profile.cshtml" />
+    <Content Include="Views\AppEvents\Create.cshtml" />
+    <Content Include="Views\AppEvents\Details.cshtml" />
+    <Content Include="Views\AppEvents\List.cshtml" />
+    <Content Include="Views\AppEvents\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
