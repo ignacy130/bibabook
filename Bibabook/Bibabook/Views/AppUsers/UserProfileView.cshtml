@@ -1,0 +1,82 @@
+﻿@model Bibabook.Models.ViewModels.UserProfileViewModel
+
+@{
+    ViewBag.Title = "UserProfileView";
+}
+
+<h2>UserProfileView</h2>
+
+<div>
+    <h4>UserProfileViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AppUserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppUserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSelf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSelf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsFriend)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsFriend)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Avatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Avatar)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
