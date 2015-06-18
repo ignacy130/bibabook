@@ -182,6 +182,7 @@ namespace Bibabook.Implementation.AppUserService
             passwordInserted = passwordInserted + user.Salt.ToString();
             string hashedInsertedPassword = sha256_hash(passwordInserted);
 
+            
             return hashedInsertedPassword == user.Hash;
         }
 

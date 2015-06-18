@@ -121,6 +121,7 @@ namespace Bibabook.Controllers
             var logged = _usersService.Login(email, hash);
             if(logged){
                 Session[UserHelper.USER_SESSION_KEY] = email;
+                
             }
             return View("PublicIndex", UserHelper.GetLogged(Session).Friends);
         }

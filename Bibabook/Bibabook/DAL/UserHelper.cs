@@ -34,5 +34,20 @@ namespace Bibabook.DAL
                 return c;
             }
         }
+
+        public static bool IsLogged(HttpSessionStateBase session)
+        {
+            try
+            {
+                return session[USER_SESSION_KEY] != null ? true : false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
+        }
+
+
     }
 }

@@ -8,13 +8,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Bibabook.DAL;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Bibabook.Controllers
 {
     public class HomeController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
-
+        private ApplicationUserManager _userManager;
         IAppUserService _usersService;
         IKernel container = Container.Configuration.CONTAINER;
         
@@ -24,6 +26,12 @@ namespace Bibabook.Controllers
             //_socialService = aa;
             //IAppUser bb = new AppUser();
             //aa.FriendUsers(new AppUser(), new AppUser());
+
+
+            if (UserHelper.IsLogged(Session))
+            {
+                ViewBag.user = "zalogowany";
+            }
             return View();
         }
 
