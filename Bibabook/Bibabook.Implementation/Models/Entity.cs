@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Bibabook.Implementation.Models
 {
-    public class Entity
+    public abstract class Entity
     {
         
         public virtual Guid EntityID { get; set; }

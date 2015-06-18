@@ -20,7 +20,6 @@ namespace Bibabook.Implementation.AppUserService
     {
         private DataBaseContext context;
 
-
         public UsersService()
         {
             this.context = new DataBaseContext();
@@ -29,25 +28,28 @@ namespace Bibabook.Implementation.AppUserService
         public bool CreateAccount(IAppUser user) // pamiętać że podany user musi mieć pola IsVerified=false,IsActive = true;
         {
             bool user_test = context.AppUsers.Any(u => u.Email == ((AppUser)user).Email); //weryfikacja po email czy juz ktos istnieje z takim mailem
-            if ((user is AppUser) && user_test)
+            if ((user is AppUser) && !user_test)
             {
                 try
                 {
-                    string password = (user as AppUser).Credentials.Hash;       //pobranie hasła
+                    var u = (user as AppUser);
+                    string password = u.Hash;       //pobranie hasła
                     Random los = new Random();
                     int salt = los.Next(0, 100);                                //wylosowanie soli
                     password = password + salt.ToString();                      //doklejenie soli
                     string hashedpassword = sha256_hash(password);              //zahaszowanie hasła
-                    (user as AppUser).Credentials.Hash = hashedpassword;        //dodanie do bazy zahaszowanego hasła
-                    (user as AppUser).Credentials.Salt = salt.ToString();       //dodanie do bazy soli 
-
-                    context.AppUsers.Add((AppUser)user);                        // dodanie usera
+                    u.Hash = hashedpassword;        //dodanie do bazy zahaszowanego hasła
+                    u.Salt = salt;       //dodanie do bazy soli 
+                    u.Created = DateTime.Now;
+                    u.Modified = DateTime.Now;
+                    u.Birthday = DateTime.Now;
+                    context.AppUsers.Add(u);                        // dodanie usera
                     context.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    throw e;
+                    throw;
                 }
             }
             else
@@ -63,7 +65,7 @@ namespace Bibabook.Implementation.AppUserService
                 try
                 {
                     AppUser user = context.AppUsers.Single(u => u.AppUserID == ((AppUser)appUser).AppUserID);
-                    user.IsVerified = true;
+                    //user.IsVerified = true;
                     context.Entry(appUser).State = EntityState.Modified;
                     context.SaveChanges();
                     return true;
@@ -87,7 +89,7 @@ namespace Bibabook.Implementation.AppUserService
                 try
                 {
                     AppUser user = context.AppUsers.Single(u => u.AppUserID == ((AppUser)appUser).AppUserID);
-                    user.IsActive = false;
+                    //user.IsActive = false;
                     context.Entry(appUser).State = EntityState.Modified;
                     context.SaveChanges();
                     return true;
@@ -153,8 +155,8 @@ namespace Bibabook.Implementation.AppUserService
                     newPassword = newPassword + newSalt.ToString();                //doklejenie soli
                     string hashedpassword = sha256_hash(newPassword);              //zahaszowanie hasła
 
-                    user.Credentials.Hash = hashedpassword;
-                    user.Credentials.Salt = newSalt.ToString();
+                    user.Hash = hashedpassword;
+                    user.Salt = newSalt;
 
                     context.Entry(appUser).State = EntityState.Modified;
                     context.SaveChanges();
@@ -171,6 +173,16 @@ namespace Bibabook.Implementation.AppUserService
             }
 
 
+        }
+
+        public bool Login(string email, string passwordInserted)
+        {
+            var user = context.AppUsers.Single(x => string.Compare(x.Email, email, true)==0);
+
+            passwordInserted = passwordInserted + user.Salt.ToString();
+            string hashedInsertedPassword = sha256_hash(passwordInserted);
+
+            return hashedInsertedPassword == user.Hash;
         }
 
         public bool ChangeUserAvatar(IAppUser appUser, string newAvatarPath)

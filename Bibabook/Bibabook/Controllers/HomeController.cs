@@ -1,4 +1,5 @@
 ﻿using Bibabook.Implementation.AppUserService;
+using Bibabook.Implementation.DatabaseContext;
 using Bibabook.Implementation.Models;
 using Contract;
 using Ninject;
@@ -12,15 +13,17 @@ namespace Bibabook.Controllers
 {
     public class HomeController : Controller
     {
-        IAppUserSocialService _socialService;
+        private DataBaseContext db = new DataBaseContext();
+
+        IAppUserService _usersService;
         IKernel container = Container.Configuration.CONTAINER;
         
         public ActionResult Index()
         {
-            IAppUserSocialService aa = container.Get<IAppUserSocialService>();
-            _socialService = aa;
-            IAppUser bb = new AppUser();
-            aa.FriendUsers(new AppUser(), new AppUser());
+            //IAppUserSocialService aa = container.Get<IAppUserSocialService>();
+            //_socialService = aa;
+            //IAppUser bb = new AppUser();
+            //aa.FriendUsers(new AppUser(), new AppUser());
             return View();
         }
 
@@ -29,6 +32,8 @@ namespace Bibabook.Controllers
             ViewBag.Message = "Your application description page.";
             return View();
         }
+
+        
 
         public ActionResult Contact()
         {

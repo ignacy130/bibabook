@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Bibabook.Implementation.Models;
+using Bibabook.Implementation.Migrations;
 
 namespace Bibabook.Implementation.DatabaseContext
 {
@@ -13,8 +14,8 @@ namespace Bibabook.Implementation.DatabaseContext
         public DataBaseContext()
             : base("BibabookDB")
         {
-            //Database.SetInitializer<DataBaseContext>(new CreateDatabaseIfNotExists<DataBaseContext>());
-
+            //Database.SetInitializer<DataBaseContext>(new DropCreateDatabaseAlways<DataBaseContext>());
+            Database.SetInitializer<DataBaseContext>(null);
             //Database.SetInitializer<DataBaseContext>(new MigrateDatabaseToLatestVersion<DataBaseContext, Configuration>());
             //Database.Initialize(false);
         }
@@ -22,7 +23,7 @@ namespace Bibabook.Implementation.DatabaseContext
         public DbSet<AppEvent> AppEvents { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Credentials> Credentials { get; set; }
+        //public DbSet<Credentials> Credentials { get; set; }
         public DbSet<Bibabook.Implementation.Models.EventPost> EventPosts { get; set; }
         public DbSet<FriendInvitation> FriendInvatations { get; set; }
         public DbSet<GeoCoordinate> GeoCoordinates { get; set; }
@@ -34,9 +35,10 @@ namespace Bibabook.Implementation.DatabaseContext
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
+            //modelBuilder.Conventions.Remove<ComplexTypeDiscoveryConvention>();
             //Database.SetInitializer(new MyDbContextInitializer());
 
-            base.OnModelCreating(modelBuilder);
+            
         }
 
 
@@ -54,7 +56,7 @@ namespace Bibabook.Implementation.DatabaseContext
             credentials.Salt = "asdasd";
             credentials.Hash = "#####";
 
-            db.Credentials.Add(credentials);
+            //db.Credentials.Add(credentials);
             db.SaveChanges();
             AppUser appuser = new AppUser();
             appuser.AppUserID = Guid.NewGuid();
@@ -62,7 +64,7 @@ namespace Bibabook.Implementation.DatabaseContext
             appuser.Name = "Zbyszek";
             appuser.Surname = "Zbychowicz";
             appuser.Email = "zbyszek@gmail.com";
-            appuser.Credentials = credentials;
+            //appuser.Credentials = credentials;
             appuser.Birthday = DateTime.Now.AddYears(-20);
             appuser.Sex = Contract.Enums.Sex.Male;
             appuser.Avatar = "sciezkadoawatara";
@@ -84,7 +86,7 @@ namespace Bibabook.Implementation.DatabaseContext
             appuser1.Name = "Daniel";
             appuser1.Surname = "Danielowicz";
             appuser1.Email = "daniel@gmail.com";
-            appuser1.Credentials = credentials;
+            //appuser1.Credentials = credentials;
             appuser1.Birthday = DateTime.Now.AddYears(-22);
             appuser1.Sex = Contract.Enums.Sex.Male;
             appuser1.Avatar = "awatar";

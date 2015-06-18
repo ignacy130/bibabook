@@ -16,8 +16,8 @@ namespace Bibabook.Implementation.Models
         public DateTime TimeStart { get; set; }
         public DateTime TimeEnd { get; set; }
         public AppUser Host { get; set; }
-        public ICollection<AppUser> Guests { get; set; }
-        public ICollection<EventPost> Posts { get; set; }
+        public virtual List<AppUser> Guests { get; set; }
+        public virtual List<EventPost> Posts { get; set; }
         public Decimal EntryFee { get; set; }
         public bool IsActive { get; set; }
         public Privacy Privacy { get; set; }

@@ -2,6 +2,9 @@
 
 @{
     ViewBag.Title = "Details";
+    var loggedId = Bibabook.DAL.UserHelper.GetLogged(Session).AppUserID;
+    var userIsHost = Model.Host.AppUserID == loggedId;
+    var userIsGuest = Model.Guests.Select(x => x.AppUserID).Any(x => x == loggedId);
 }
 
 <h2>Details</h2>
@@ -16,6 +19,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Host
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Host.Name) @Html.DisplayFor(model => model.Host.Surname)
         </dd>
 
         <dt>
@@ -73,50 +84,23 @@
         <dd>
             @Html.DisplayFor(model => model.Privacy)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Background)
-        </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Background)
+            @if (userIsHost)
+            {
+                @Html.ActionLink("Edit party", "Edit", new { @partyId = Model.AppEventID })<br />
+                @Html.ActionLink("Delete party", "Delete", new { @partyId = Model.AppEventID })
+            }
+            @if (!userIsGuest)
+            {
+                @Html.ActionLink("Join party", "JoinParty", new {@partyId=Model.AppEventID })
+            }
+            else
+            {
+                @Html.ActionLink("Leave party", "LeaveParty", new { @partyId = Model.AppEventID })
+            }
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EntityID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EntityID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Modified)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Modified)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Deleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Deleted)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AppEventID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

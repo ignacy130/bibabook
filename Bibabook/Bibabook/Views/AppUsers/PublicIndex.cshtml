@@ -4,11 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -28,18 +23,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Avatar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EntityID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Modified)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deleted)
         </th>
         <th></th>
     </tr>
@@ -65,23 +48,14 @@
             @Html.DisplayFor(modelItem => item.Avatar)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EntityID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modified)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deleted)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AppUserID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AppUserID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AppUserID })
-        </td>
+            @if (!Bibabook.DAL.UserHelper.GetLogged(Session).Friends.Any(x => x.AppUserID == item.AppUserID)) { 
+                @Html.ActionLink("Add Friend", "AddFriend", new { id = item.AppUserID })
+            }
+            else
+            {
+                @Html.Raw("Your friend")
+            }
+                                                                                    
     </tr>
 }
-
 </table>

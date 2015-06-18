@@ -11,5 +11,6 @@ namespace Bibabook.DAL
     {
         //tutaj mają zawrzeć się wszytkie dodania do bazy jeżeli baza bnie jest zainicjalizowana
         //kilka pól które tworzą się podczas stawiania bazy na nowo
+
     }
 }

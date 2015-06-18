@@ -23,10 +23,18 @@ namespace DodanieBazy
             var users = db.AppUsers;
             foreach (var item in users)
             {
-                Console.WriteLine(item.Email);
+                Console.WriteLine(item.Name);
             }
             Console.ReadLine();
             var c = 0;
+            db.AppUsers.Add(new AppUser()
+            {
+                Name = "zbyszek",
+                Birthday = DateTime.Now,
+                Created = DateTime.Now,
+                Modified = DateTime.Now,
+            });
+            db.SaveChanges();
            /* Credentials credentials = new Credentials();
             credentials.CredentialsID = Guid.NewGuid();
             credentials.Salt = "asdasd";

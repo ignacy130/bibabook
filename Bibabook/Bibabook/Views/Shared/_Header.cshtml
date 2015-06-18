@@ -1,4 +1,10 @@
-﻿
+﻿@{
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "main-content",
+        InsertionMode = InsertionMode.Replace,
+    };
+}
 <header>
 
     <!-- A menu bar. -->
@@ -15,20 +21,22 @@
                 <p class="site-title">@Html.ActionLink("Bibabook", "Index", "Home")</p>
             </div>
 
-            <section id="search">
-                <form class="navbar-form navbar-left" role="search" method="post">
-                    <div class="form-group">
-                        <input name="search-data" type="search" class="form-control" placeholder="Search">
-                    </div>
-                </form>
-            </section>
-
             <nav>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        @using (Ajax.BeginForm("Search", "AppUsers", options))
+                        {
+                            <div class="form-group form-inline col-sm-5">
+                                @Html.TextBox("name", "", new { @class = "form-control" })
+                                <button class="btn btn-default pull-right col-sm-3" type="submit">Szukaj</button>
+                            </div>
+                        }
+
                     <ul class="nav navbar-nav" id="operations">
-                        <li>@Html.ActionLink("Add event", "Index", "Home")</li>
-                        <li>@Html.ActionLink("My events", "Index", "Home")</li>
+                        
+                        <li>@Html.ActionLink("Add event", "Create", "AppEvents")</li>
+                        <li>@Html.ActionLink("Events", "Index", "AppEvents")</li>
+                        <li>@Html.ActionLink("My friends", "MyFriends", "AppUsers")</li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" style="color:red;" data-toggle="dropdown" role="button" aria-expanded="false">
                                 @ViewBag.EventCount <span class="caret"></span>

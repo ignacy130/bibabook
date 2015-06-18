@@ -24,7 +24,7 @@
             credentials.Salt = "asdasd";
             credentials.Hash = "#####";
 
-            db.Credentials.Add(credentials);
+            //db.Credentials.Add(credentials);
             db.SaveChanges();
             AppUser appuser = new AppUser();
             appuser.AppUserID = Guid.NewGuid();
@@ -32,7 +32,7 @@
             appuser.Name = "Zbyszek";
             appuser.Surname = "Zbychowicz";
             appuser.Email = "zbyszek@gmail.com";
-            appuser.Credentials = credentials;
+            //appuser.Credentials = credentials;
             appuser.Birthday = DateTime.Now.AddYears(-20);
             appuser.Sex = Contract.Enums.Sex.Male;
             appuser.Avatar = "sciezkadoawatara";
@@ -54,7 +54,7 @@
             appuser1.Name = "Daniel";
             appuser1.Surname = "Danielowicz";
             appuser1.Email = "daniel@gmail.com";
-            appuser1.Credentials = credentials;
+            //appuser1.Credentials = credentials;
             appuser1.Birthday = DateTime.Now.AddYears(-22);
             appuser1.Sex = Contract.Enums.Sex.Male;
             appuser1.Avatar = "awatar";

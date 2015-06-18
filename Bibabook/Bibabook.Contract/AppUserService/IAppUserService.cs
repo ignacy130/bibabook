@@ -37,5 +37,7 @@ namespace Contract
         Boolean ChangeUserEmail(IAppUser appUser, String newEmail);
         Boolean ChangeUserPassword(IAppUser appUser, String newPassword);
         Boolean ChangeUserAvatar(IAppUser appUser, String newAvatarPath);
+
+        bool Login(string email, string passwordInserted);
     }
 }

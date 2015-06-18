@@ -15,15 +15,19 @@ namespace Bibabook.Implementation.AppEventService
     {
         private DataBaseContext context;
 
-        public EventsService() { } // ten konstruktor stworzony tylko po to żeby test się nie sypał 
-        public EventsService(DataBaseContext ctx)
+        
+        public EventsService()
         {
-            this.context = ctx;
+            this.context = new DataBaseContext();
         }
 
         public bool Create(IAppEvent appEvent)
         {
-            context.AppEvents.Add((AppEvent)appEvent);
+            var e = (AppEvent)appEvent;
+            e.Host = context.AppUsers.Single(x => x.AppUserID == e.Host.AppUserID);
+            e.Created = DateTime.Now;
+            e.Modified = DateTime.Now;
+            context.AppEvents.Add(e);
             context.SaveChanges();
             return true;
         }
@@ -62,12 +66,22 @@ namespace Bibabook.Implementation.AppEventService
 
         public bool EnrollUser(IAppEvent appEvent, IAppUser appUser)
         {
-            throw new NotImplementedException();
+            var e = context.AppEvents.Single(x => x.AppEventID == ((AppEvent)appEvent).AppEventID);
+            var u = context.AppUsers.Single(x => x.AppUserID == ((AppUser)appUser).AppUserID);
+            e.Guests.Add((AppUser)u);
+            context.Entry(e).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+            return true;
         }
 
         public bool RemoveUser(IAppEvent appEvent, IAppUser appUser)
         {
-            throw new NotImplementedException();
+            var e = context.AppEvents.Single(x => x.AppEventID == ((AppEvent)appEvent).AppEventID);
+            var u = context.AppUsers.Single(x => x.AppUserID == ((AppUser)appUser).AppUserID);
+            e.Guests.Remove((AppUser)u);
+            context.Entry(e).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+            return true;
         }
 
         public bool RemoveUser(IAppEvent appEvent, ICollection<IAppUser> appUsers)

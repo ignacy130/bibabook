@@ -9,17 +9,29 @@ using System.Web;
 using System.Web.Mvc;
 using Bibabook.Implementation.DatabaseContext;
 using Bibabook.Implementation.Models;
+using Contract;
+using Ninject;
+using Bibabook.DAL;
+using Bibabook.Filters;
 
-namespace Bibabook.Views
+namespace Bibabook.Contollers
 {
+    [LoggedFilter]
     public class AppEventsController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
+        IAppEventService eventsService;
+        IKernel container = Container.Configuration.CONTAINER;
+
+        public AppEventsController()
+        {
+            eventsService = container.Get<IAppEventService>();
+        }
 
         // GET: AppEvents
         public async Task<ActionResult> Index()
         {
-            return View(await db.AppEvents.ToListAsync());
+            return View("PublicIndex", await db.AppEvents.ToListAsync());
         }
 
         // GET: AppEvents/Details/5
@@ -29,7 +41,7 @@ namespace Bibabook.Views
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AppEvent appEvent = await db.AppEvents.FindAsync(id);
+            AppEvent appEvent = await db.AppEvents.Include(x => x.Host).Include(x=>x.Guests).FirstOrDefaultAsync(x => x.AppEventID == id);
             if (appEvent == null)
             {
                 return HttpNotFound();
@@ -53,12 +65,35 @@ namespace Bibabook.Views
             if (ModelState.IsValid)
             {
                 appEvent.AppEventID = Guid.NewGuid();
-                db.AppEvents.Add(appEvent);
+                appEvent.Host = UserHelper.GetLogged(Session);
+                eventsService.Create(appEvent);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
             return View(appEvent);
+        }
+
+        public PartialViewResult Search(string name)
+        {
+            var events = db.AppEvents.Where(x => x.Name.Contains(name) || x.Description.Contains(name)).ToList();
+            return PartialView("PublicIndex", events);
+        }
+
+        public ActionResult JoinParty([Bind(Include="partyId")]Guid partyId)
+        {
+            var logged = UserHelper.GetLogged(Session);
+            var party = db.AppEvents.Single(x=>x.AppEventID==partyId);
+            eventsService.EnrollUser(party, logged);
+            return RedirectToAction("Details", new {@id= party.AppEventID });
+        }
+
+        public ActionResult LeaveParty([Bind(Include = "partyId")]Guid partyId)
+        {
+            var logged = UserHelper.GetLogged(Session);
+            var party = db.AppEvents.Single(x => x.AppEventID == partyId);
+            eventsService.RemoveUser(party, logged);
+            return RedirectToAction("Details", new { @id = party.AppEventID });
         }
 
         // GET: AppEvents/Edit/5

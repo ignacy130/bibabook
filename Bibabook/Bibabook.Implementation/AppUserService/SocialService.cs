@@ -73,8 +73,10 @@ namespace Bibabook.Implementation.AppUserService
         {
             var fu = (AppUser)firstUser;
             var su = (AppUser)secondUser;
+            fu = _context.AppUsers.Single(x => x.AppUserID == fu.AppUserID);
+            su = _context.AppUsers.Single(x => x.AppUserID == su.AppUserID);
 
-            su.Friends.Add(su);
+            fu.Friends.Add(su);
             su.Friends.Add(fu);
             _context.Entry(fu).State = EntityState.Modified;
             _context.Entry(su).State = EntityState.Modified;
