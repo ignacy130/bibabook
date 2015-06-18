@@ -12,10 +12,11 @@ using Contract;
 using Ninject;
 using Bibabook.DAL;
 using Bibabook.Filters;
+using Bibabook.Models.ViewModels;
 
 namespace Bibabook.Controllers
 {
-    
+
     public class AppUsersController : Controller
     {
         private DataBaseContext db = new DataBaseContext();
@@ -43,7 +44,7 @@ namespace Bibabook.Controllers
         public ActionResult MyFriends()
         {
             var loggedId = UserHelper.GetLogged(Session).AppUserID;
-            return View("PublicIndex",db.AppUsers.Single(x => x.AppUserID == loggedId).Friends.ToList());
+            return View("PublicIndex", db.AppUsers.Single(x => x.AppUserID == loggedId).Friends.ToList());
         }
 
         // GET: AppUsers/Details/5
@@ -70,43 +71,65 @@ namespace Bibabook.Controllers
 
         // POST: AppUsers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AppUserID,Name,Surname,Email,Birthday,Sex,Avatar,Hash")] AppUser appUser)
+        public ActionResult Create(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+
+            using (DataBaseContext db = new DataBaseContext())
             {
-                appUser.AppUserID = Guid.NewGuid();
-                _usersService.CreateAccount(appUser);
-                return RedirectToAction("Index");
+                AppUser user = new AppUser
+                {
+                    AppUserID = Guid.NewGuid(),
+                    Name = model.Name,
+                    Surname = model.Surname,
+                    Email = model.Email,
+                    Hash = model.Password,
+                    //Salt = null,
+                    //CredentialsID = null,
+                    Birthday = model.Birthday,
+                    Sex = model.Sex,
+                    Avatar = null,
+                    Friends = null,
+                    Notifications = null,
+                    Events = null,
+                    Posts = null
+                };
+
+                db.AppUsers.Add(user);
             }
 
-            return View(appUser);
+            return RedirectToAction("Index");
         }
+
 
         [LoggedFilter]
         public ActionResult Search(string name)
         {
             var logged = UserHelper.GetLogged(Session);
-            var items = db.AppUsers.Where(x => x.Name.Contains(name) || x.Surname.Contains(name)).Where(x=>x.Email!=logged.Email).ToList();
+
+            var items = db.AppUsers.Where(x => x.Name.Contains(name) || x.Surname.Contains(name)).Where(x => x.Email != logged.Email).ToList();
             if (!items.Any())
             {
                 return RedirectToAction("Search", "AppEvents", new { @name = name });
             }
+
             return PartialView("PublicIndex", items);
         }
 
         [LoggedFilter]
         public ActionResult AddFriend(string id)
         {
-            var g = new Guid(id);
-            var friend = db.AppUsers.Include(x=>x.Friends).SingleOrDefault(x => x.AppUserID == g);
+            var userId = new Guid(id);
+            var friend = db.AppUsers.Include(x => x.Friends).SingleOrDefault(x => x.AppUserID == userId);
+
             if (friend != null)
             {
                 _socialService.FriendUsers(UserHelper.GetLogged(Session), friend);
             }
-            return RedirectToAction("MyFriends", UserHelper.GetLogged(Session).Friends);
+
+            return RedirectToAction("Friends", UserHelper.GetLogged(Session).Friends);
         }
 
         public ActionResult Login()
@@ -116,14 +139,16 @@ namespace Bibabook.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login([Bind(Include = "Email,Hash")] string email, string hash)
+        public ActionResult Login(LoginViewModel model)
         {
-            var logged = _usersService.Login(email, hash);
-            if(logged){
-                Session[UserHelper.USER_SESSION_KEY] = email;
-                
+            var logged = _usersService.Login(model.Email, model.Password);
+
+            if (logged)
+            {
+                Session[UserHelper.USER_SESSION_KEY] = model.Email;
             }
-            return View("PublicIndex", UserHelper.GetLogged(Session).Friends);
+
+            return View("Index");
         }
 
         // GET: AppUsers/Edit/5
@@ -134,11 +159,14 @@ namespace Bibabook.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             AppUser appUser = db.AppUsers.Find(id);
+
             if (appUser == null)
             {
                 return HttpNotFound();
             }
+
             return View(appUser);
         }
 
@@ -148,15 +176,32 @@ namespace Bibabook.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [LoggedFilter]
-        public ActionResult Edit([Bind(Include = "AppUserID,Name,Surname,Email,Birthday,Sex,Avatar,EntityID,Created,Modified,Deleted")] AppUser appUser)
+        public ActionResult Edit(UserProfileViewModel model)
         {
-            if (ModelState.IsValid)
+
+            AppUser user = new AppUser
             {
-                db.Entry(appUser).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(appUser);
+                AppUserID = model.AppUserID,
+                Name = model.Name,
+                Surname = model.Surname,
+                Email = model.Email,
+                //Hash = model.Password,
+                //Salt = null,
+                //CredentialsID = null,
+                Birthday = model.Birthday,
+                Sex = model.Sex,
+                Avatar = model.Avatar,
+                Friends = model.Friends,
+                Notifications = null,
+                Events = model.Events,
+            };
+
+
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
+
+
+            return RedirectToAction("Index");
         }
 
         // GET: AppUsers/Delete/5
@@ -167,11 +212,14 @@ namespace Bibabook.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             AppUser appUser = db.AppUsers.Find(id);
+
             if (appUser == null)
             {
                 return HttpNotFound();
             }
+
             return View(appUser);
         }
 
@@ -184,6 +232,7 @@ namespace Bibabook.Controllers
             AppUser appUser = db.AppUsers.Find(id);
             db.AppUsers.Remove(appUser);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
