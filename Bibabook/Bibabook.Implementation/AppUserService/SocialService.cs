@@ -107,8 +107,10 @@ namespace Bibabook.Implementation.AppUserService
         {
             var fu = (AppUser)firstUser;
             var su = (AppUser)secondUser;
+            fu = _context.AppUsers.Single(x => x.AppUserID == fu.AppUserID);
+            su = _context.AppUsers.Single(x => x.AppUserID == su.AppUserID);
 
-            su.Friends.Remove(su);
+            fu.Friends.Remove(su);
             su.Friends.Remove(fu);
             _context.Entry(fu).State = EntityState.Modified;
             _context.Entry(su).State = EntityState.Modified;
@@ -118,9 +120,9 @@ namespace Bibabook.Implementation.AppUserService
                 _context.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
     }
