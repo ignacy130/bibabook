@@ -19,11 +19,13 @@ namespace Bibabook.DAL
             }
             else if (session[USER_SESSION_KEY] == null)
             {
-                //throw new KeyNotFoundException("No Client logged or wrong key!");
-                return null;
+                throw new KeyNotFoundException("No Client logged or wrong key!");
             }
-            var email = (String) session[USER_SESSION_KEY];
-            return GetLogged(email);
+            else
+            {
+                var email = (String)session[USER_SESSION_KEY];
+                return GetLogged(email);
+            }
         }
 
         private static AppUser GetLogged(string email)
