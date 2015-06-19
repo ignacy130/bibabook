@@ -8,11 +8,11 @@
 
 <header>
     <div class="wrapper">
-        @Html.ActionLink("Bibabook", "Index", "Home", htmlAttributes: new { @class = "logo" })
+        @Html.ActionLink("Bibabook", "Index", "Home",null, htmlAttributes: new { @class = "logo" })
 
         <!-- SearchBox -->
         <nav class="search-box right">
-            @using (Ajax.BeginForm("Search", "AppUsers", options))
+            @using (Ajax.BeginForm("Search", "Search", options))
             {
                 <div>
                     <div style="width: 280px; float: left; padding: 12px 0 14px;">
@@ -32,11 +32,6 @@
         @Html.Partial("_UserPanel")
     </div>
 </header>
-
-
-
-
-
 
 
 @*{
