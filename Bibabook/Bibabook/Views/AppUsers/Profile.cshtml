@@ -69,7 +69,7 @@
         <dd>
             @foreach (var evt in Model.Events)
             {
-                <p>@Html.ActionLink(evt.Name, "Details", "Events", new { id = evt.AppEventID })</p>
+                <p>@Html.ActionLink(evt.Name, "Details", "AppEvents",  new { id = evt.AppEventID }, null)</p>
             }
         </dd>
 
@@ -87,9 +87,16 @@
     </dl>
 </div>
 
-    @if (!ViewBag.IsFriend && !ViewBag.IsSelf)
+    @if (!ViewBag.IsSelf)
     {
+        if (!ViewBag.IsFriend) 
+        { 
         <p>@Html.ActionLink("Dodaj do znajomych", "AddFriend", new { id = Model.AppUserID })</p>
+        }
+        else
+        {
+            <p>@Html.ActionLink("Usun ze znajomych", "RemoveFriend", new { id = Model.AppUserID })</p>
+        }
     }
     @if (ViewBag.IsSelf)
     {
