@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using Bibabook.DAL;
 using Microsoft.AspNet.Identity.Owin;
+using Bibabook.Filters;
 
 namespace Bibabook.Controllers
 {
@@ -19,7 +20,7 @@ namespace Bibabook.Controllers
         private ApplicationUserManager _userManager;
         IAppUserService _usersService;
         IKernel container = Container.Configuration.CONTAINER;
-        
+        [LoggedFilter]
         public ActionResult Index()
         {
             //IAppUserSocialService aa = container.Get<IAppUserSocialService>();
