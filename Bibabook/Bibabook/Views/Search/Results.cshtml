@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Bibabook.Models.SearchItemViewModel>
+
+@{
+    ViewBag.Title = "Wyniki";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        var controller = "";
+        switch (item.Type)
+        {
+            case Bibabook.Models.AppType.AppEvent:
+                controller = "AppEvents";
+                break;
+            case Bibabook.Models.AppType.AppUser:
+                controller = "AppUsers";
+                break;
+            default:
+                break;
+        }
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Pokaz", "Details",controller, new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>
