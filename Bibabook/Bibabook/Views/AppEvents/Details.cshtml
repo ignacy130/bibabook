@@ -87,16 +87,18 @@
         <dd>
             @if (userIsHost)
             {
-                @Html.ActionLink("Edit party", "Edit", new { @partyId = Model.AppEventID })<br />
+                @Html.ActionLink("Edit party", "Edit", new { @Id = Model.AppEventID })<br />
                 @Html.ActionLink("Delete party", "Delete", new { @partyId = Model.AppEventID })
             }
-            @if (!userIsGuest)
+            @if( !userIsHost){
+            if (!userIsGuest)
             {
                 @Html.ActionLink("Join party", "JoinParty", new {@partyId=Model.AppEventID })
             }
             else
             {
                 @Html.ActionLink("Leave party", "LeaveParty", new { @partyId = Model.AppEventID })
+            }
             }
         </dd>
     </dl>
