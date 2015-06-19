@@ -31,7 +31,8 @@ namespace Bibabook
                       "~/Content/header.css",
                       "~/Content/style.css",
                       "~/Content/style_event.css",                      
-                      "~/Content/tempstyle.css"
+                      "~/Content/tempstyle.css",
+                      "~/Content/responsive.css"
                       ));
         }
     }

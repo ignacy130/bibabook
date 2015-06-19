@@ -69,3 +69,20 @@ button{
 #main-content{
     margin-top: 100px;
 }
+
+/* 19.06 - forgive me */
+.pole_tekstowe{
+    padding-right: 2px;
+}
+.wiersz{
+
+    background-color:#BFC2C4;
+    padding-top: 2rem;
+    padding-right: 2rem;
+}
+.jumbotron{
+ margin-top: 1.2rem
+}
+.przycisk{
+ 
+}

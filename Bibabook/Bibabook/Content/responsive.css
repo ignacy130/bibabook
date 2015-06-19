@@ -1,0 +1,45 @@
+@media(min-width: 1200px){
+.jumbotron{
+    background-size: 100% 100%;
+    min-height: 720px;
+}
+}
+
+@media(min-width: 992px) and (max-width: 1199px){
+.jumbotron{
+    background-size: 100% 100%;
+    min-height: 620px;
+}
+}
+
+@media(min-width: 768px) and (max-width: 991px){
+.jumbotron{
+    background-size: 100% 100%;
+    min-height: 600px;
+}  
+}
+
+
+@media(max-width: 767px){
+.jumbotron{
+    background-size: 100% 100%;
+    min-height: 500px;
+}
+}
+
+
+@media(max-width: 480px){
+.jumbotron{
+    background-size: 100% 100%;
+    min-height: 300px;
+}
+body .jumbotron h1{
+    font-size: 2.5rem;
+}
+body .jumbotron h5{
+    font-size: 1.5rem;   
+}   
+body .jumbotron h1,h5{
+    margin-top: 3rem;
+}
+}
