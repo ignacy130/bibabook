@@ -2,7 +2,14 @@
 @using Bibabook.Implementation.Models
 
 @{
-    AppUser user = UserHelper.GetLogged(Session);
+    AppUser user = null;
+    try
+    {
+        user = UserHelper.GetLogged(Session);
+    }
+    catch (Exception)
+    {
+    }
 }
 
 <nav class="user-panel">
@@ -16,12 +23,12 @@
     else
     {
         <ul>
-            <li>@Html.ActionLink("Wszystkie wydarzenia", "List", "AppEvents")</li>
+            <li>@Html.ActionLink("Wszystkie wydarzenia", "Index", "AppEvents")</li>
             <li>@Html.ActionLink("Dodaj wydarzenie", "Create", "AppEvents")</li>
             <li>@Html.ActionLink("Znajomi", "MyFriends", "AppUsers")</li>
             <li>@Html.ActionLink("Twoje dane", "Details", "AppUsers", new { id = user.AppUserID }, null)</li>
             <li>@Html.ActionLink("Wyloguj się", "LogOut", "AppUsers")</li>
-            <li>Witaj @user.Name</li>
+            @*<li>Witaj @user.Name</li>*@
         </ul>
         <!--<img src="Images/portret.png" class="img-responsive" style="height:40px;" alt="Profile picture">-->
         <div style="height:40px;width:40px;background:#484"></div>
