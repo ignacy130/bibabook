@@ -6,6 +6,9 @@
 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="row text-center">
+            <h1>Wydarzenia</h1>
+        </div>
         @foreach (var item in Model)
         {
             <div class="row wiersz">
@@ -24,5 +27,27 @@
                 </a>
             </div>
         }
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+        <div class="row text-center prawy_naglowek">
+            <h3>Dzisiejsze wydarzenia</h3>
+        </div>
+        <div class="jumbotron">
+            <div class="container">
+
+                @foreach (var item in Model.Where(x=>x.TimeStart.Date==DateTime.Today))
+                {
+
+                    <div class="row center-block text-center">
+                            <img class="img-thumbnail img-circle" src="images/impreza.jpg" />
+                            <h4>@item.Name</h4>
+                        <a href="@Url.Action("Details", new { @id=item.AppEventID})" class="btn btn-info">Zobacz wiecej!</a>
+                    </div>
+                    <hr/>
+                }
+
+            </div>
+        </div>
     </div>
 </div>
