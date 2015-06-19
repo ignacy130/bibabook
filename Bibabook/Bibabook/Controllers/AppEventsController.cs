@@ -31,9 +31,10 @@ namespace Bibabook.Contollers
         }
 
         // GET: AppEvents
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View("PublicIndex", await db.AppEvents.ToListAsync());
+            var events = db.AppEvents.ToList();
+            return View("List", events);
         }
 
         // GET: AppEvents/Details/5
@@ -54,7 +55,7 @@ namespace Bibabook.Contollers
         // GET: AppEvents/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create");
         }
 
         // POST: AppEvents/Create
@@ -79,7 +80,7 @@ namespace Bibabook.Contollers
             };
             eventsService.Create(appEvent);
 
-            return View("Details", new EventDetailsViewModel(appEvent));
+            return View("Details", appEvent);
         }
 
         public ActionResult Search(string name)
@@ -130,7 +131,6 @@ namespace Bibabook.Contollers
             {
                 db.Entry(appEvent).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
             }
             return View(appEvent);
         }
