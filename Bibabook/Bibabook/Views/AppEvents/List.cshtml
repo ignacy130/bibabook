@@ -1,19 +1,11 @@
-﻿@model IEnumerable<Bibabook.Models.EventSummaryModel>
+﻿@model IEnumerable<Bibabook.Implementation.Models.AppEvent>
 
 @{
     ViewBag.Title = "EventSummary";
 }
 
-<h2>EventSummary</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AppEventID)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -26,38 +18,29 @@
         <th>
             @Html.DisplayNameFor(model => model.TimeEnd)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AppEventID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdultsOnly)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeEnd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                
+                <a href="@Url.Action("Details", new { @id=item.AppEventID})">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdultsOnly)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeEnd)
+            </td>
+        </tr>
+
+    }
 
 </table>
