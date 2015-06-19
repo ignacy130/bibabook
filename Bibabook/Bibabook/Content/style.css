@@ -75,14 +75,26 @@ button{
     padding-right: 2px;
 }
 .wiersz{
-
     background-color:#BFC2C4;
-    padding-top: 2rem;
-    padding-right: 2rem;
+    margin-bottom: 1rem;
 }
 .jumbotron{
  margin-top: 1.2rem
 }
 .przycisk{
  
+}
+
+.wiersz .link_class {
+    display:block;
+    overflow:auto;
+    color: inherit;
+    padding-top: 2rem;
+    padding-right: 2rem;
+    text-decoration: none;
+}
+
+.wiersz .link_class:hover {
+    color: inherit;
+    text-decoration: none;
 }

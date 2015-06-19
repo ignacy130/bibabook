@@ -18,8 +18,10 @@
         <div class="col-md-4">
             <h2>Uczestnicy</h2>
             <ul>
-                @foreach (var item in Model.Guests) { 
-                <li><a href="@Url.Action("Details", "ApUsers", new { @id = item.AppUserID })">@item.Name @item.Surname</a></li>
+                @foreach (var item in Model.Guests)
+                { 
+                    //url.action tworzy relatywny link do akcji details kontrolera appusers i przeysyla mu id usera
+                    <li><a href="@Url.Action("Details", "AppUsers", new { @id = item.AppUserID })">@item.Name @item.Surname</a></li>
                 }
             </ul>
         </div>
