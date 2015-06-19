@@ -28,6 +28,8 @@ namespace Bibabook.Implementation.AppEventService
             e.Created = DateTime.Now;
             e.Modified = DateTime.Now;
             context.AppEvents.Add(e);
+            e.Host.Events.Add(e);
+            context.Entry(e.Host).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
             return true;
         }
