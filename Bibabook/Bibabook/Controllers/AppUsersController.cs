@@ -55,15 +55,15 @@ namespace Bibabook.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AppUser appUser = db.AppUsers.Find(id);
+            AppUser appUser = db.AppUsers.Include(x => x.Events).Single(x => x.AppUserID == id);
             if (appUser == null)
             {
                 return HttpNotFound();
             }
-            AppUser activeUser = UserHelper.GetLogged(Session);
 
+            AppUser activeUser = UserHelper.GetLogged(Session);
             ViewBag.IsSelf = appUser.AppUserID == activeUser.AppUserID;
-            ViewBag.IsFriend = activeUser.Friends.Any(t => t.AppUserID == activeUser.AppUserID);
+            ViewBag.IsFriend = activeUser.Friends.Any(t => t.AppUserID == appUser.AppUserID);
 
             return View("Profile", appUser);
         }
@@ -90,17 +90,7 @@ namespace Bibabook.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [LoggedFilter]
-        public ActionResult Search(string name)
-        {
-            var logged = UserHelper.GetLogged(Session);
-            var items = db.AppUsers.Where(x => x.Name.Contains(name) || x.Surname.Contains(name)).Where(x=>x.Email!=logged.Email).ToList();
-            if (!items.Any())
-            {
-                return RedirectToAction("Search", "AppEvents", new { @name = name });
-            }
-            return RedirectToAction("List", "AppEvents", items);
-        }
+        
 
         [LoggedFilter]
         public ActionResult AddFriend(string id)
@@ -111,7 +101,19 @@ namespace Bibabook.Controllers
             {
                 _socialService.FriendUsers(UserHelper.GetLogged(Session), friend);
             }
-            return RedirectToAction("List", UserHelper.GetLogged(Session).Friends);
+            return View("List", UserHelper.GetLogged(Session).Friends);
+        }
+
+        [LoggedFilter]
+        public ActionResult RemoveFriend(string id)
+        {
+            var g = new Guid(id);
+            var friend = db.AppUsers.Include(x => x.Friends).SingleOrDefault(x => x.AppUserID == g);
+            if (friend != null)
+            {
+                _socialService.UnfriendUsers(UserHelper.GetLogged(Session), friend);
+            }
+            return View("List", UserHelper.GetLogged(Session).Friends);
         }
 
         public ActionResult Login()
