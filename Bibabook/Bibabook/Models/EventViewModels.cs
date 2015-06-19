@@ -96,8 +96,18 @@ namespace Bibabook.Models.ViewModels
 
     }
 
-    public class EventSummaryModel
+    public class EventSummaryViewModel
     {
+        public EventSummaryViewModel(AppEvent model)
+        {
+            AppEventID = model.AppEventID;
+            Name = model.Name;
+            AdultsOnly = model.AdultsOnly;
+            TimeStart = model.TimeStart;
+            TimeEnd = model.TimeEnd;
+            IsActive = model.IsActive;
+        }
+
         public Guid AppEventID { get; set; }
 
         [DisplayName("Imię")]
