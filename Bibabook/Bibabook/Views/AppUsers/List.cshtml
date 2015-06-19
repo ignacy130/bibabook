@@ -1,18 +1,15 @@
-﻿@model IEnumerable<Bibabook.Models.ViewModels.UserSummaryModel>
+﻿@model IEnumerable<Bibabook.Implementation.Models.AppUser>
 
 @{
-    ViewBag.Title = "UserList";
+    ViewBag.Title = "Lista znajomych";
 }
 
-<h2>UserList</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AppUserID)
+            @Html.DisplayNameFor(model => model.Avatar)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -20,16 +17,13 @@
         <th>
             @Html.DisplayNameFor(model => model.Surname)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Avatar)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.AppUserID)
+            @Html.DisplayFor(modelItem => item.Avatar)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -38,12 +32,7 @@
             @Html.DisplayFor(modelItem => item.Surname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Avatar)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Profil użytkownika", "Details", new { id=item.AppUserID })
         </td>
     </tr>
 }

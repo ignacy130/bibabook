@@ -14,6 +14,7 @@ using Ninject;
 using Bibabook.DAL;
 using Bibabook.Filters;
 using Bibabook.Models;
+using Bibabook.Models.ViewModels;
 
 namespace Bibabook.Contollers
 {

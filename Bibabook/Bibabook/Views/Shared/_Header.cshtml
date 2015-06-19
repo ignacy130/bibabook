@@ -5,6 +5,41 @@
         InsertionMode = InsertionMode.Replace,
     };
 }
+
+<header>
+    <div class="wrapper">
+        @Html.ActionLink("Bibabook", "Index", "Home", htmlAttributes: new { @class = "logo" })
+
+        <!-- SearchBox -->
+        <nav class="search-box right">
+            @using (Ajax.BeginForm("Search", "AppUsers", options))
+            {
+                <div>
+                    <div style="width: 280px; float: left; padding: 12px 0 14px;">
+                        @Html.TextBox("name", "", new { @class = "form-control" })
+                    </div>
+                    <button class="btn btn-default" style="width: 100px; margin: 12px 6px 14px;" type="submit">Szukaj</button>                 
+                </div>
+            }
+        </nav>
+        <!-- End: SearchBox -->
+
+        <!--
+            Miejsce na linki dostępne dla wszystkich użytkowników (gości).
+            Tylko czy na dobrą sprawę czy jest jakikolwiek, który faktycznie
+            powinien zostać tutaj dodany?
+        -->
+        @Html.Partial("_UserPanel")
+    </div>
+</header>
+
+
+
+
+
+
+
+@*{
 <header>
 
     <!-- A menu bar. -->
@@ -42,21 +77,20 @@
                                 @ViewBag.EventCount <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                @*@foreach (var link in ViewBag.EventLinks)
+                                <!--
+                                foreach (var link in ViewBag.EventLinks)
                                 {
                                     <li>@link</li>
-                                }*@
+                                }-->
                             </ul>
                         </li>
                     </ul>
                     <div class="navbar-right">
-                        
+                        @Html.Partial("_Login")
                     </div>
                 </div>
             </nav>
-
-
-
         </div>
     </nav>
 </header>
+*@

@@ -12,6 +12,7 @@ using Contract;
 using Ninject;
 using Bibabook.DAL;
 using Bibabook.Filters;
+using Bibabook.Models.ViewModels;
 
 namespace Bibabook.Controllers
 {
@@ -43,7 +44,7 @@ namespace Bibabook.Controllers
         public ActionResult MyFriends()
         {
             var loggedId = UserHelper.GetLogged(Session).AppUserID;
-            return View("List",db.AppUsers.Single(x => x.AppUserID == loggedId).Friends.ToList());
+            return View("List", db.AppUsers.Single(x => x.AppUserID == loggedId).Friends.ToList());
         }
 
         // GET: AppUsers/Details/5
@@ -59,6 +60,11 @@ namespace Bibabook.Controllers
             {
                 return HttpNotFound();
             }
+            AppUser activeUser = UserHelper.GetLogged(Session);
+
+            ViewBag.IsSelf = appUser.AppUserID == activeUser.AppUserID;
+            ViewBag.IsFriend = activeUser.Friends.Any(t => t.AppUserID == activeUser.AppUserID);
+
             return View("Profile", appUser);
         }
 
@@ -69,23 +75,19 @@ namespace Bibabook.Controllers
         }
 
         // POST: AppUsers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "AppUserID,Name,Surname,Email,Birthday,Sex,Avatar,Hash")] AppUser appUser)
+        public ActionResult Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            AppUser user = new AppUser
             {
-                appUser.AppUserID = Guid.NewGuid();
-                _usersService.CreateAccount(appUser);
+                AppUserID = Guid.NewGuid(), Name = model.Name, Surname = model.Surname, 
+                Email = model.Email, Birthday = model.Birthday, Sex = model.Sex, Hash = model.Password
+            };
+            _usersService.CreateAccount(user);
+            Session[UserHelper.USER_SESSION_KEY] = user.Email;
 
-                Session[UserHelper.USER_SESSION_KEY] = appUser.Email;
-
-                return RedirectToAction("Index", "Home");
-            }
-
-            return View(appUser);
+            return RedirectToAction("Index", "Home");
         }
 
         [LoggedFilter]
@@ -119,13 +121,20 @@ namespace Bibabook.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login([Bind(Include = "Email,Hash")] string email, string hash)
+        public ActionResult Login(LoginViewModel model)
         {
-            var logged = _usersService.Login(email, hash);
-            if(logged){
-                Session[UserHelper.USER_SESSION_KEY] = email;
-                
+            var logged = _usersService.Login(model.Email, model.Password);
+            if(logged)
+            {
+                Session[UserHelper.USER_SESSION_KEY] = model.Email;
             }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [LoggedFilter]
+        public ActionResult LogOut()
+        {
+            Session[UserHelper.USER_SESSION_KEY] = null;
             return RedirectToAction("Index", "Home");
         }
 
@@ -133,7 +142,7 @@ namespace Bibabook.Controllers
         [LoggedFilter]
         public ActionResult Edit(Guid? id)
         {
-            if (id == null)
+            if (id == null || id != UserHelper.GetLogged(Session).AppUserID)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -142,24 +151,40 @@ namespace Bibabook.Controllers
             {
                 return HttpNotFound();
             }
-            return View("EditProfile", appUser);
+
+            EditProfileViewModel model = new EditProfileViewModel
+            {
+                AppUserID = appUser.AppUserID,
+                Name = appUser.Name,
+                Surname = appUser.Surname,
+                Birthday = appUser.Birthday,
+                Sex = appUser.Sex
+            };
+
+            return View("EditProfile", model);
         }
 
         // POST: AppUsers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [LoggedFilter]
-        public ActionResult Edit([Bind(Include = "AppUserID,Name,Surname,Email,Birthday,Sex,Avatar,EntityID,Created,Modified,Deleted")] AppUser appUser)
+        public ActionResult Edit(EditProfileViewModel model)
         {
-            if (ModelState.IsValid)
+            AppUser appUser = db.AppUsers.Find(model.AppUserID);
+            if (appUser != null)
             {
+                appUser.Name = model.Name;
+                appUser.Surname = model.Surname;
+                appUser.Sex = model.Sex;
+                appUser.Birthday = model.Birthday;
                 db.Entry(appUser).State = EntityState.Modified;
                 db.SaveChanges();
-                return View("Index", "Home");
+                ViewBag.IsSelf = true;
+                ViewBag.IsFriend = false;
+                return View("Profile", appUser);
             }
-            return View("EditProfile", appUser);
+
+            return View("EditProfile", model);
         }
 
         //// GET: AppUsers/Delete/5

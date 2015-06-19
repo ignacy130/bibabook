@@ -1,38 +1,15 @@
-﻿@model Bibabook.Models.ViewModels.UserProfileViewModel
+﻿@model Bibabook.Implementation.Models.AppUser
 
 @{
-    ViewBag.Title = "UserProfileView";
+    ViewBag.Title = "Profil użytkownika";
 }
 
-<h2>UserProfileView</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
     <h4>UserProfileViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AppUserID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AppUserID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsSelf)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsSelf)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsFriend)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsFriend)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -74,9 +51,50 @@
             @Html.DisplayFor(model => model.Avatar)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Friends)
+        </dt>
+
+        <dd>
+            @foreach (var friend in Model.Friends)
+            {
+                <p>@Html.ActionLink(friend.Name + " " + friend.Surname, "Details", new { id = friend.AppUserID })</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Events)
+        </dt>
+
+        <dd>
+            @foreach (var evt in Model.Events)
+            {
+                <p>@Html.ActionLink(evt.Name, "Details", "Events", new { id = evt.AppEventID })</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Posts)
+        </dt>
+
+        <dd>
+            @foreach (var post in Model.Posts)
+            {
+                <p>@post.Author: @post.Content</p>
+            }
+        </dd>
+
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+    @if (!ViewBag.IsFriend && !ViewBag.IsSelf)
+    {
+        <p>@Html.ActionLink("Dodaj do znajomych", "AddFriend", new { id = Model.AppUserID })</p>
+    }
+    @if (ViewBag.IsSelf)
+    {
+        <p>@Html.ActionLink("Zmień dane profilowe", "Edit", new { id = Model.AppUserID })</p>
+        <p>@Html.ActionLink("Zmień hasło", "ChangePassword")</p>
+        <p>@Html.ActionLink("Zmień avatar", "ChangeAvatar")</p>
+    }
+

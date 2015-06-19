@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Bibabook.Models
+namespace Bibabook.Models.ViewModels
 {
     public class EventCreateViewModel
     {

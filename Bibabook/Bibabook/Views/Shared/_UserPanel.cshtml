@@ -1,0 +1,55 @@
+﻿@using Bibabook.DAL
+@using Bibabook.Implementation.Models
+
+@{
+    AppUser user = UserHelper.GetLogged(Session);
+}
+
+<nav class="user-panel">
+    @if (user == null)
+    {
+        <ul>
+            <li>@Html.ActionLink("Zarejestruj", "Register", "AppUsers", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Zaloguj się", "Login", "AppUsers", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }
+    else
+    {
+        <ul>
+            <li>@Html.ActionLink("Wszystkie wydarzenia", "List", "AppEvents")</li>
+            <li>@Html.ActionLink("Dodaj wydarzenie", "Create", "AppEvents")</li>
+            <li>@Html.ActionLink("Znajomi", "MyFriends", "AppUsers")</li>
+            <li>@Html.ActionLink("Twoje dane", "Details", "AppUsers", new { id = user.AppUserID }, null)</li>
+            <li>@Html.ActionLink("Wyloguj się", "LogOut", "AppUsers")</li>
+            <li>Witaj @user.Name</li>
+        </ul>
+        <!--<img src="Images/portret.png" class="img-responsive" style="height:40px;" alt="Profile picture">-->
+        <div style="height:40px;width:40px;background:#484"></div>
+    }
+</nav>
+
+
+
+
+
+@*
+
+    @if (user != null)
+    {
+        <img src="Images/portret.png" class="img-responsive" style="height:40px;" alt="Profile picture">
+        <p>Witaj @user.Name</p>
+
+        using (Html.BeginForm("LogOut", "AppUser", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        }
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Zarejestruj", "Register", "AppUser", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Zaloguj się", "Login", "AppUser", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }
+*@

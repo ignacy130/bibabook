@@ -11,19 +11,17 @@ namespace Bibabook.Models.ViewModels
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "Pole jest wymagane")]
-        [Display(Name = "Imie")]
+        [Display(Name = "Imię")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Pole jest wymagane")]
         [Display(Name = "Nazwisko")]
         public string Surname { get; set; }
 
-
         [Required(ErrorMessage = "Pole jest wymagane")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Zły adres e-mail")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
-
 
         [Required(ErrorMessage = "Pole jest wymagane")]
         [Display(Name = "Hasło")]
@@ -56,7 +54,6 @@ namespace Bibabook.Models.ViewModels
         [Display(Name = "Hasło")]
         public string Password { get; set; }
 
-
         [Display(Name = "Zapamiętaj mnie")]
         public bool RememberMe { get; set; }
     }
@@ -69,39 +66,38 @@ namespace Bibabook.Models.ViewModels
         public string Email { get; set; }
     }
 
-    public class UserProfileViewModel
-    {
+    //public class UserProfileViewModel
+    //{
+    //    public Guid AppUserID { get; set; }
 
-        public Guid AppUserID { get; set; }
+    //    public bool IsSelf { get; set; }
+    //    public bool IsFriend { get; set; }
 
-        public bool IsSelf { get; set; }
-        public bool IsFriend { get; set; }
+    //    [Required(ErrorMessage = "Pole jest wymagane")]
+    //    [Display(Name = "Imię")]
+    //    public string Name { get; set; }
 
-        [Required(ErrorMessage = "Pole jest wymagane")]
-        [Display(Name = "Imie")]
-        public string Name { get; set; }
+    //    [Required(ErrorMessage = "Pole jest wymagane")]
+    //    [Display(Name = "Nazwisko")]
+    //    public string Surname { get; set; }
 
-        [Required(ErrorMessage = "Pole jest wymagane")]
-        [Display(Name = "Nazwisko")]
-        public string Surname { get; set; }
+    //    [Required(ErrorMessage = "Pole jest wymagane")]
+    //    [Display(Name = "Hasło")]
+    //    [DataType(DataType.Password, ErrorMessage = "Hasło musi zawierać znak specjalny")]
+    //    public string Email { get; set; }
 
-        [Required(ErrorMessage = "Pole jest wymagane")]
-        [Display(Name = "Hasło")]
-        [DataType(DataType.Password, ErrorMessage = "Hasło musi zawierać znak specjalny")]
-        public string Email { get; set; }
+    //    [Required(ErrorMessage = "Pole jest wymagane")]
+    //    [Display(Name = "Data urodzin")]
+    //    [DataType(DataType.DateTime, ErrorMessage = "Zła data")]
+    //    public DateTime Birthday { get; set; }
 
-        [Required(ErrorMessage = "Pole jest wymagane")]
-        [Display(Name = "Data urodzin")]
-        [DataType(DataType.DateTime, ErrorMessage = "Zła data")]
-        public DateTime Birthday { get; set; }
-
-        [Required(ErrorMessage = "Płeć jest wymagana")]
-        [Display(Name = "Płeć")]
-        public Sex Sex { get; set; }
-        public string Avatar { get; set; }
-        public ICollection<AppUser> Friends { get; set; }
-        public ICollection<AppEvent> Events { get; set; }
-    }
+    //    [Required(ErrorMessage = "Płeć jest wymagana")]
+    //    [Display(Name = "Płeć")]
+    //    public Sex Sex { get; set; }
+    //    public string Avatar { get; set; }
+    //    public ICollection<UserSummaryModel> Friends { get; set; }
+    //    public ICollection<EventSummaryModel> Events { get; set; }
+    //}
 
     public class UserSummaryModel
     {
@@ -138,8 +134,10 @@ namespace Bibabook.Models.ViewModels
 
     public class EditProfileViewModel
     {
+        public Guid AppUserID { get; set; }
+
         [Required(ErrorMessage = "Pole jest wymagane")]
-        [Display(Name = "Imie")]
+        [Display(Name = "Imię")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Pole jest wymagane")]
