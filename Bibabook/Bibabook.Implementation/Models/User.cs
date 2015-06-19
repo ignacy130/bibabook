@@ -37,16 +37,16 @@ namespace Bibabook.Implementation.Models
         public string Avatar { get; set; }
 
         [Display(Name = "Znajomi")]
-        public virtual ICollection<AppUser> Friends { get; set; }
+        public virtual List<AppUser> Friends { get; set; }
 
         [Display(Name = "Powiadomienia")]
-        public virtual ICollection<Notification> Notifications { get; set; }
+        public virtual List<Notification> Notifications { get; set; }
 
         [Display(Name = "Wydarzenia użytkownika")]
-        public virtual ICollection<AppEvent> Events { get; set; }
+        public virtual List<AppEvent> Events { get; set; }
 
         [Display(Name = "Komentarze")]
-        public virtual ICollection<EventPost> Posts { get; set; }
+        public virtual List<EventPost> Posts { get; set; }
 
         //public bool IsVerified { get; set; }
         //public bool IsActive { get; set; }
