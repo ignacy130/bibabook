@@ -1,66 +1,82 @@
-﻿@model Bibabook.Implementation.Models.AppEvent
+﻿@using Contract.Enums
+@model Bibabook.Implementation.Models.AppEvent
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Szczegóły";
     var loggedId = Bibabook.DAL.UserHelper.GetLogged(Session).AppUserID;
     var userIsHost = Model.Host.AppUserID == loggedId;
-    if (Model.Guests != null) { 
-    var userIsGuest = Model.Guests.Select(x => x.AppUserID).Any(x => x == loggedId);
-    }
+    bool userIsGuest;
+    userIsGuest = Model.Guests != null && Model.Guests.Select(x => x.AppUserID).Any(x => x == loggedId);
 }
-
-<h2>@Html.DisplayFor(model => model.Name)</h2>
-
-<div class="col-md-8 col-md-offset-2">
-
-    <div>
+<div class="col-md-10 col-md-offset-2">
+    <h2 style="text-align: center;padding-bottom:50px;">@Html.DisplayFor(model => model.Name)</h2>
+    <div class="row">
         <div class="col-md-8">
-            <img class="img-thumbnail" src="@Model.Background" />
+            <div class="row">
+                <img class="img-rounded" src="~/Content/UserIcon/Event.png" style="width:60%">
+                <blockquote style="margin-top: 20px">
+                    @Html.DisplayFor(model => model.Description)
+                </blockquote>
+            </div>
+            <div class="row" style="margin-top: 150px">
+                <div class="event-buttons col-md-12">
+
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    @if (!userIsHost)
+                    {
+                        if (!userIsGuest)
+                        {
+                            @Html.ActionLink("Dołącz", "JoinParty", new { @partyId = Model.AppEventID }, new { @class = "btn btn-primary  col-md-12" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Opuść", "LeaveParty", new { @partyId = Model.AppEventID }, new { @class = "btn btn-primary center-block col-md-12" })
+                        }
+                    }
+
+                    @if (userIsHost)
+                    {
+                        @Html.ActionLink("Edytuj wydarzenie", "Edit", new { @Id = Model.AppEventID }, new { @class = "btn btn-primary right col-md-6" })<br />
+                        <br/>
+                        @Html.ActionLink("Usuń wydarzenie", "Delete", new { @Id = Model.AppEventID }, new { @class = "btn btn-primary right col-md-6" })
+                    }
+
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <h2>Uczestnicy</h2>
-            <ul>
-                @foreach (var item in Model.Guests)
-                { 
-                    //url.action tworzy relatywny link do akcji details kontrolera appusers i przeysyla mu id usera
-                    <li><a href="@Url.Action("Details", "AppUsers", new { @id = item.AppUserID })">@item.Name @item.Surname</a></li>
+            <ul style="list-style: none">
+                @if (Model.Guests != null)
+                {
+                    foreach (var item in Model.Guests)
+                     {
+                         //url.action tworzy relatywny link do akcji details kontrolera appusers i przeysyla mu id usera
+                         <li>
+                             @if (item.Sex == Sex.Female)
+                             {
+                                 <img class=" img-circle" src="~/Content/UserIcon/Female.png" style="width: 50px; height: 50px;"/>
+                             }
+                             else
+                             {
+                                 <img class="img-circle" src="~/Content/UserIcon/Male.png" style="width: 50px; height: 50px;"/>
+                             }
+                             <a href="@Url.Action("Details", "AppUsers", new {@id = item.AppUserID})">@item.Name @item.Surname</a>
+                         </li>
+                     }
                 }
             </ul>
         </div>
     </div>
-    <div class="col-md-12" style="padding: 20px;">
-        @Html.DisplayFor(model => model.Description)
+    <div class="btn-group">
+        @Html.ActionLink("Powrót do strony głównej", "Index", "", new { @class = "btn btn-default center", @role = "button" })
     </div>
-    <div class="event-buttons col-md-12">
-        <div class="col-md-4 col-md-offset-4">
-                @if (!userIsHost)
-                {
-                    if (!userIsGuest)
-                    {
-                        @Html.ActionLink("Join party", "JoinParty", new { @partyId = Model.AppEventID }, new { @class = "btn btn-primary right col-md-12" })
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Leave party", "LeaveParty", new { @partyId = Model.AppEventID }, new { @class = "btn btn-primary right col-md-12" })
-                    }
-                }
-
-            @if (userIsHost)
-            {
-                @Html.ActionLink("Edit party", "Edit", new { @Id = Model.AppEventID }, new { @class = "btn btn-primary right col-md-12" })<br />
-                @Html.ActionLink("Delete party", "Delete", new { @partyId = Model.AppEventID }, new { @class = "btn btn-primary right col-md-12" })
-            }
-
-        </div>
-    </div>
-
-
-
-</div>    
+</div>
 
 <div class="clearfix">
 
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -13,7 +13,7 @@ namespace Bibabook.Implementation.Models
     {
         public Guid AppEventID { get; set; }
 
-        [DisplayName("Imię")]
+        [DisplayName("Nazwa wydarzenia")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public string Name { get; set; }
 
@@ -25,12 +25,12 @@ namespace Bibabook.Implementation.Models
         public bool AdultsOnly { get; set; }
 
         [DisplayName("Data początku")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.DateTime,ErrorMessage="Zły format daty")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public DateTime TimeStart { get; set; }
 
         [DisplayName("Data końca")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.DateTime, ErrorMessage = "Zły format daty")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public DateTime TimeEnd { get; set; }
 

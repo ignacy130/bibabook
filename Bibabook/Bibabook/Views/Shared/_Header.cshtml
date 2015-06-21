@@ -8,7 +8,7 @@
 
 <header>
     <div class="wrapper">
-        @Html.ActionLink("Bibabook", "Index", "Home",null, htmlAttributes: new { @class = "logo" })
+        @Html.ActionLink("Bibabook", "Index", "Home", null, htmlAttributes: new { @class = "logo" })
 
         <!-- SearchBox -->
         <nav class="search-box right">
@@ -18,12 +18,11 @@
                     <div style="width: 280px; float: left; padding: 12px 0 14px;">
                         @Html.TextBox("name", "", new { @class = "form-control" })
                     </div>
-                    <button class="btn btn-default" style="width: 100px; margin: 12px 6px 14px;" type="submit">Szukaj</button>                 
+                    <button class="btn btn-default" style="width: 100px; margin: 12px 6px 14px;" type="submit">Szukaj</button>
                 </div>
             }
         </nav>
         <!-- End: SearchBox -->
-
         <!--
             Miejsce na linki dostępne dla wszystkich użytkowników (gości).
             Tylko czy na dobrą sprawę czy jest jakikolwiek, który faktycznie
@@ -35,57 +34,57 @@
 
 
 @*{
-<header>
+    <header>
 
-    <!-- A menu bar. -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!--float-left-->
-            <div class="navbar-header ">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <p class="site-title">@Html.ActionLink("Bibabook", "Index", "Home")</p>
-            </div>
-
-            <nav>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        @using (Ajax.BeginForm("Search", "AppUsers", options))
-                        {
-                            <div class="form-group form-inline col-sm-5">
-                                @Html.TextBox("name", "", new { @class = "form-control" })
-                                <button class="btn btn-default pull-right col-sm-3" type="submit">Szukaj</button>
-                            </div>
-                        }
-
-                    <ul class="nav navbar-nav" id="operations">
-                        
-                        <li>@Html.ActionLink("Dodaj wydarzenie", "Create", "AppEvents")</li>
-                        <li>@Html.ActionLink("Wszystkie wydarzenia", "List", "AppEvents")</li>
-                        <li>@Html.ActionLink("Znajomi", "MyFriends", "AppUsers")</li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" style="color:red;" data-toggle="dropdown" role="button" aria-expanded="false">
-                                @ViewBag.EventCount <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <!--
-                                foreach (var link in ViewBag.EventLinks)
-                                {
-                                    <li>@link</li>
-                                }-->
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="navbar-right">
-                        @Html.Partial("_Login")
-                    </div>
+        <!-- A menu bar. -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!--float-left-->
+                <div class="navbar-header ">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <p class="site-title">@Html.ActionLink("Bibabook", "Index", "Home")</p>
                 </div>
-            </nav>
-        </div>
-    </nav>
-</header>
+
+                <nav>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            @using (Ajax.BeginForm("Search", "AppUsers", options))
+                            {
+                                <div class="form-group form-inline col-sm-5">
+                                    @Html.TextBox("name", "", new { @class = "form-control" })
+                                    <button class="btn btn-default pull-right col-sm-3" type="submit">Szukaj</button>
+                                </div>
+                            }
+
+                        <ul class="nav navbar-nav" id="operations">
+
+                            <li>@Html.ActionLink("Dodaj wydarzenie", "Create", "AppEvents")</li>
+                            <li>@Html.ActionLink("Wszystkie wydarzenia", "List", "AppEvents")</li>
+                            <li>@Html.ActionLink("Znajomi", "MyFriends", "AppUsers")</li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" style="color:red;" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    @ViewBag.EventCount <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <!--
+                                    foreach (var link in ViewBag.EventLinks)
+                                    {
+                                        <li>@link</li>
+                                    }-->
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="navbar-right">
+                            @Html.Partial("_Login")
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+    </header>
 *@

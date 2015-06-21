@@ -23,17 +23,9 @@ namespace Bibabook.Controllers
         [LoggedFilter]
         public ActionResult Index()
         {
-            //IAppUserSocialService aa = container.Get<IAppUserSocialService>();
-            //_socialService = aa;
-            //IAppUser bb = new AppUser();
-            //aa.FriendUsers(new AppUser(), new AppUser());
+            var events = db.AppEvents.ToList();
 
-
-            if (UserHelper.IsLogged(Session))
-            {
-                ViewBag.user = "zalogowany";
-            }
-            return View();
+            return View(events);
         }
 
         public ActionResult About()

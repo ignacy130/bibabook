@@ -1,26 +1,27 @@
-﻿
-<aside class="today col-md-4 col-sm-4 col-xs-12">
-    <h2>Today in @ViewBag.</h2>
-    <div class="container col-md-12 col-sm-12 event-aside-block">
-        <div class="col-md-12 col-sm-12 event-aside-panel" style="background: url('img/1380265.jpg')">
-            <div class="event-text col-md-12 col-sm-12 col-xs-12">
-                Tytuł wydarzenia
-            </div>
-            <div class="event-buttons col-md-12 col-sm-12 col-xs-12 text-right">
-                <button class="btn btn-primary right">Dołącz do wydzrzenia!</button>
-                <button class="btn btn-info">Zobacz więcej!</button>
-            </div>
+﻿@model IEnumerable<Bibabook.Implementation.Models.AppEvent>
+<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+    <div class="row text-center naglowek_prawy">
+        <h2>Dzisiejsze wydarzenia</h2>
+    </div>
+    <div class="jumbotron">
+        <div class="container">
+
+            @foreach (var item in Model.Where(x => x.TimeStart.Date == DateTime.Today))
+            {
+                if (item.IsActive)
+                {
+                    <div class="row center-block text-center">
+                        <img class="img-rounded" src="~/Content/UserIcon/Event.png" style="width: 150px;">
+                        <h4>@item.Name</h4>
+                        <div class="btn-group">
+                            @Html.ActionLink("Dołącz", "JoinParty", "AppEvents", new {@partyId = item.AppEventID}, new {@class = "btn btn-primary text-center"})
+                            <a href="@Url.Action("Details", "AppEvents", new {@id = item.AppEventID})" class="btn btn-info">Zobacz wiecej!</a>
+                        </div>
+                    </div>
+                    <hr/>
+                }
+            }
+
         </div>
     </div>
-    <div class="container col-md-12 col-sm-12 event-aside-block">
-        <div class="col-md-12 col-sm-12 event-aside-panel" style="background: url('img/1380265.jpg')">
-            <div class="event-text col-md-12 col-sm-12 col-xs-12">
-                Tytuł wydarzenia
-            </div>
-            <div class="event-buttons col-md-12 col-sm-12 col-xs-12 text-right">
-                <button class="btn btn-primary right">Dołącz do wydzrzenia!</button>
-                <button class="btn btn-info">Zobacz więcej!</button>
-            </div>
-        </div>
-    </div>
-</aside>
+</div>

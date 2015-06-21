@@ -34,7 +34,7 @@ namespace Bibabook.Contollers
         public ActionResult Index()
         {
             var events = db.AppEvents.ToList();
-            return View("List", events);
+            return RedirectToAction("Index", "Home", events);
         }
 
         // GET: AppEvents/Details/5
@@ -50,6 +50,19 @@ namespace Bibabook.Contollers
                 return HttpNotFound();
             }
             return View(appEvent);
+        }
+        public ActionResult Details2(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AppEvent appEvent = db.AppEvents.Include(x => x.Host).Include(x => x.Guests).FirstOrDefault(x => x.AppEventID == id);
+            if (appEvent == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Details",appEvent);
         }
 
         // GET: AppEvents/Create
@@ -99,10 +112,14 @@ namespace Bibabook.Contollers
 
         public ActionResult LeaveParty([Bind(Include = "partyId")]Guid partyId)
         {
+            
             var logged = UserHelper.GetLogged(Session);
             var party = db.AppEvents.Single(x => x.AppEventID == partyId);
             eventsService.RemoveUser(party, logged);
-            return RedirectToAction("Details", new { @id = party.AppEventID });
+            
+             return Redirect(Request.UrlReferrer.AbsolutePath);
+            
+            //return RedirectToAction("Details", new { @id = party.AppEventID });
         }
 
         // GET: AppEvents/Edit/5
@@ -141,13 +158,19 @@ namespace Bibabook.Contollers
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
             }
-            AppEvent appEvent = await db.AppEvents.FindAsync(id);
-            if (appEvent == null)
-            {
-                return HttpNotFound();
-            }
-            return View(appEvent);
+            var logged = UserHelper.GetLogged(Session);
+            AppEvent appEvent = db.AppEvents.Single(evt => evt.AppEventID == id);
+            appEvent.IsActive = false;
+            db.Entry(appEvent).State = EntityState.Modified;
+            db.SaveChanges();
+          
+            //if (appEvent == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: AppEvents/Delete/5

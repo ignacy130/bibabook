@@ -73,6 +73,9 @@ namespace Bibabook.Implementation.AppEventService
             e.Guests.Add((AppUser)u);
             context.Entry(e).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
+            u.Events.Add(e); //dodane przez hubert pietruczuk
+            context.Entry(u).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
             return true;
         }
 
@@ -81,7 +84,9 @@ namespace Bibabook.Implementation.AppEventService
             var e = context.AppEvents.Single(x => x.AppEventID == ((AppEvent)appEvent).AppEventID);
             var u = context.AppUsers.Single(x => x.AppUserID == ((AppUser)appUser).AppUserID);
             e.Guests.Remove((AppUser)u);
+            u.Events.Remove(e);
             context.Entry(e).State = System.Data.Entity.EntityState.Modified;
+            context.Entry(u).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
             return true;
         }

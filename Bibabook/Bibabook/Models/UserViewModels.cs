@@ -19,7 +19,7 @@ namespace Bibabook.Models.ViewModels
         public string Surname { get; set; }
 
         [Required(ErrorMessage = "Pole jest wymagane")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Zły adres e-mail")]
+        [EmailAddress(ErrorMessage="Adres Email jest niepoprawny")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 

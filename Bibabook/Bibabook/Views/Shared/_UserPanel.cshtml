@@ -23,7 +23,7 @@
     else
     {
         <ul>
-            <li>@Html.ActionLink("Wszystkie wydarzenia", "Index", "AppEvents")</li>
+            @*<li>@Html.ActionLink("Wszystkie wydarzenia", "Index", "AppEvents")</li>*@
             <li>@Html.ActionLink("Dodaj wydarzenie", "Create", "AppEvents")</li>
             <li>@Html.ActionLink("Znajomi", "MyFriends", "AppUsers")</li>
             <li>@Html.ActionLink("Twoje dane", "Details", "AppUsers", new { id = user.AppUserID }, null)</li>

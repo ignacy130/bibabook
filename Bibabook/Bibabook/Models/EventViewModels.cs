@@ -11,7 +11,7 @@ namespace Bibabook.Models.ViewModels
 {
     public class EventCreateViewModel
     {
-        [DisplayName("Imię")]
+        [DisplayName("Nazwa wydarzenia")]
         [Required(ErrorMessage="Pole jest wymagane")]
         public string Name { get; set; }
 
@@ -63,7 +63,7 @@ namespace Bibabook.Models.ViewModels
         [DisplayName("Numer id wydarzenia")]
         public Guid AppEventID { get; set; }
 
-        [DisplayName("Imię")]
+        [DisplayName("Nazwa wydarzenia")]
         public string Name { get; set; }
 
         [DisplayName("Opis")]
@@ -110,7 +110,7 @@ namespace Bibabook.Models.ViewModels
 
         public Guid AppEventID { get; set; }
 
-        [DisplayName("Imię")]
+        [DisplayName("Nazwa wydarzenia")]
         public string Name { get; set; }
 
         [DisplayName("Tylko dorośli")]

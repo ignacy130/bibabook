@@ -1,16 +1,16 @@
 ﻿@model Bibabook.Implementation.Models.AppEvent
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edycja";
 }
 
-<h2>Edit</h2>
+<h2>Edycja</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit","AppEvents"))
 {
     @Html.AntiForgeryToken()
-    
+    @Html.HiddenFor(model=>model.AppEventID)
     <div class="form-horizontal">
         <h4>AppEvent</h4>
         <hr />

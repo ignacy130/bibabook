@@ -1,10 +1,10 @@
 ﻿@model Bibabook.Implementation.Models.AppEvent
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Stwórz wydarzenie";
 }
 
-<h2>Create</h2>
+<h2>Stwórz wydarzenie</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>AppEvent</h4>
+  
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.Description, new {  @class = "form-control " })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -44,15 +44,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TimeStart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TimeStart, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @class = "form-control calendar2" } })
+                @Html.ValidationMessageFor(model => model.TimeStart, "", new { @class = "text-danger " })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.TimeEnd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @class = "form-control calendar2" } })
                 @Html.ValidationMessageFor(model => model.TimeEnd, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -74,13 +74,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Background, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Background, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Background, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -96,4 +96,9 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+      $(function() {
+          $(".calendar2").datepicker();
+      });
+</script>
 }
