@@ -4,7 +4,9 @@
     ViewBag.Title = "Details";
     var loggedId = Bibabook.DAL.UserHelper.GetLogged(Session).AppUserID;
     var userIsHost = Model.Host.AppUserID == loggedId;
+    if (Model.Guests != null) { 
     var userIsGuest = Model.Guests.Select(x => x.AppUserID).Any(x => x == loggedId);
+    }
 }
 
 <h2>@Html.DisplayFor(model => model.Name)</h2>
