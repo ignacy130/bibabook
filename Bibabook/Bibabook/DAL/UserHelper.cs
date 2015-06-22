@@ -33,7 +33,7 @@ namespace Bibabook.DAL
             AppUser c = null;
             using (DataBaseContext db = new DataBaseContext())
             {
-                c = db.AppUsers.Include("Friends").Single(x => x.Email == email);
+                c = db.AppUsers.Include("Friends").Include("Events").Single(x => x.Email == email);
                 return c;
             }
         }

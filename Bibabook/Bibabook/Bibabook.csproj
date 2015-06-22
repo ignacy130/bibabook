@@ -223,6 +223,7 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="DAL\DataBaseInitializer.cs" />
     <Compile Include="DAL\UserHelper.cs" />
+    <Compile Include="Filters\HostFilter.cs" />
     <Compile Include="Filters\LoggedFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -344,6 +345,7 @@
     <Content Include="Views\AppEvents\List.cshtml" />
     <Content Include="Views\AppEvents\Edit.cshtml" />
     <Content Include="Views\Search\Results.cshtml" />
+    <Content Include="Views\AppUsers\403.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

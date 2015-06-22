@@ -26,11 +26,13 @@ namespace Bibabook.Implementation.Models
 
         [DisplayName("Data początku")]
         [DataType(DataType.DateTime,ErrorMessage="Zły format daty")]
+        [DisplayFormat(DataFormatString="0:dd/MM/yyyy")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public DateTime TimeStart { get; set; }
 
         [DisplayName("Data końca")]
         [DataType(DataType.DateTime, ErrorMessage = "Zły format daty")]
+        [DisplayFormat(DataFormatString = "0:dd/MM/yyyy")]
         [Required(ErrorMessage = "Pole jest wymagane")]
         public DateTime TimeEnd { get; set; }
 

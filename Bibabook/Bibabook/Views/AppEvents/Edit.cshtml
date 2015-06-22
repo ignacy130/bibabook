@@ -46,7 +46,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TimeStart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @class = "form-control calendar2" } })
                 @Html.ValidationMessageFor(model => model.TimeStart, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,7 +54,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TimeEnd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @class = "form-control calendar2" } })
                 @Html.ValidationMessageFor(model => model.TimeEnd, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -113,4 +113,9 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+      $(function() {
+          $(".calendar2").datepicker();
+      });
+</script>
 }

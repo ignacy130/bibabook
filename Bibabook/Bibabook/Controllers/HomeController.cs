@@ -23,7 +23,7 @@ namespace Bibabook.Controllers
         [LoggedFilter]
         public ActionResult Index()
         {
-            var events = db.AppEvents.ToList();
+            var events = db.AppEvents.Where(x=>x.Privacy == Contract.Enums.Privacy.Public).ToList();
 
             return View(events);
         }

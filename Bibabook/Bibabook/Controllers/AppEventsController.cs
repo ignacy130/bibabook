@@ -36,7 +36,6 @@ namespace Bibabook.Contollers
             var events = db.AppEvents.ToList();
             return RedirectToAction("Index", "Home", events);
         }
-
         // GET: AppEvents/Details/5
         public async Task<ActionResult> Details(Guid? id)
         {
@@ -71,6 +70,7 @@ namespace Bibabook.Contollers
             return View("Create");
         }
 
+        
         // POST: AppEvents/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -123,6 +123,7 @@ namespace Bibabook.Contollers
         }
 
         // GET: AppEvents/Edit/5
+        [HostFilter]
         public async Task<ActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -141,6 +142,7 @@ namespace Bibabook.Contollers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [HostFilter]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "AppEventID,Name,Description,AdultsOnly,TimeStart,TimeEnd,EntryFee,IsActive,Privacy,Background,EntityID,Created,Modified,Deleted")] AppEvent appEvent)
         {
@@ -149,9 +151,9 @@ namespace Bibabook.Contollers
                 db.Entry(appEvent).State = EntityState.Modified;
                 await db.SaveChangesAsync();
             }
-            return View(appEvent);
+            return RedirectToAction("Details",appEvent);
         }
-
+        [HostFilter]
         // GET: AppEvents/Delete/5
         public async Task<ActionResult> Delete(Guid? id)
         {
@@ -174,6 +176,7 @@ namespace Bibabook.Contollers
         }
 
         // POST: AppEvents/Delete/5
+        [HostFilter]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)

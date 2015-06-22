@@ -48,6 +48,11 @@ namespace Bibabook.Controllers
             return View("List", db.AppUsers.Single(x => x.AppUserID == loggedId).Friends.ToList());
         }
 
+        public ActionResult Unauthorized()
+        {
+            return View("403");
+        }
+
         // GET: AppUsers/Details/5
         [LoggedFilter]
         public ActionResult Details(Guid? id)

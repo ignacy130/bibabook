@@ -1,5 +1,6 @@
 ﻿using Bibabook.Implementation.Models;
 using Contract;
+using Contract.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,6 +38,9 @@ namespace Bibabook.Models.ViewModels
 
         [DisplayName("Tło")]
         public string Background { get; set; }
+
+        [DisplayName("Dostepnosc")]
+        public Privacy Privacy { get; set; }
 
     }
 
