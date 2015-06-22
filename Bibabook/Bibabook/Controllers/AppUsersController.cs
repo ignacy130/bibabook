@@ -13,6 +13,7 @@ using Ninject;
 using Bibabook.DAL;
 using Bibabook.Filters;
 using Bibabook.Models.ViewModels;
+using Bibabook.Models;
 
 namespace Bibabook.Controllers
 {
@@ -64,8 +65,9 @@ namespace Bibabook.Controllers
             AppUser activeUser = UserHelper.GetLogged(Session);
             ViewBag.IsSelf = appUser.AppUserID == activeUser.AppUserID;
             ViewBag.IsFriend = activeUser.Friends.Any(t => t.AppUserID == appUser.AppUserID);
-
-            return View("Profile", appUser);
+            var eventsPart = db.AppEvents.Where(x=>x.Guests.Select(m=>m.AppUserID).Contains(appUser.AppUserID)).ToList();
+            var profileViewModel = new ProfileViewModel() { AppUser = appUser, EventsParticipating = eventsPart };
+            return View("Profile", profileViewModel);
         }
 
         // GET: AppUsers/Create

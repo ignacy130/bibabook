@@ -11,15 +11,16 @@
         {
             if (item.IsActive == true)
             {
-                Uri uriResult;
-                var src = (Uri.TryCreate(item.Background, UriKind.Absolute, out uriResult) && uriResult.Scheme == Uri.UriSchemeHttp) ? "~/Content/UserIcon/Event.png" : item.Background;
+
 
                 <div class=" row wiersz bg-gray">
                         <h4 class="tytul_wydarzenia text-center">@item.Name / @item.TimeStart.Day-@item.TimeStart.Month-@item.TimeStart.Year</h4>
                     @*<a href="@Url.Action("Details", new { @id=item.AppEventID})" class="link_class">*@
                     <div class="col-md-3 col-lg-3  text-center">
 
-                        <img class="" src="@src" style="width: 150px;">
+                        <div style="background: url(/Content/UserIcon/Event.png); width: 150px; background-size:cover; height: 150px">
+                            <img class="" src="@item.Background" style="width: 150px;"/>
+                        </div>
 
                         @*<img class="img-rounded" src="~/Content/UserIcon/Event.png" style="width: 150px;">
                         <h4 class="tytul_wydarzenia">Tytuł: <br>@item.Name</h4>*@

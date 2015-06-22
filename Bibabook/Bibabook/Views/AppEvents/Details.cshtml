@@ -8,55 +8,52 @@
     bool userIsGuest;
     userIsGuest = Model.Guests != null && Model.Guests.Select(x => x.AppUserID).Any(x => x == loggedId);
 }
-<div class="col-md-10 col-md-offset-2">
-    <h2 style="text-align: center;padding-bottom:50px;">@Html.DisplayFor(model => model.Name)</h2>
+<div class="col-md-12">
+    <h2 class="shadowed" style="text-align: center;padding-bottom:5vh;">@Html.DisplayFor(model => model.Name)</h2>
     <div class="row">
         <div class="col-md-8">
             <div class="row">
-                <img class="img-rounded" src="~/Content/UserIcon/Event.png" style="width:60%">
-                <blockquote style="margin-top: 20px">
+                <div style="background: url(/Content/UserIcon/Event.png); background-size:cover; overflow: hidden; height: 30vh;" class="col-md-4">
+                    <img class="" src="@Model.Background" style="width: 100%; height: 100%;" />
+                </div>
+            
+                <blockquote class="col-md-3 col-md-offset-1">
                     @Html.DisplayFor(model => model.Description)
                 </blockquote>
-            </div>
-            <div class="row" style="margin-top: 150px">
-                <div class="event-buttons col-md-12">
-
-
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    @if (!userIsHost)
-                    {
-                        if (!userIsGuest)
-                        {
-                            @Html.ActionLink("Dołącz", "JoinParty", new { @partyId = Model.AppEventID }, new { @class = "btn btn-primary  col-md-12" })
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Opuść", "LeaveParty", new { @partyId = Model.AppEventID }, new { @class = "btn btn-primary center-block col-md-12" })
-                        }
-                    }
-
-                    @if (userIsHost)
-                    {
-                        @Html.ActionLink("Edytuj wydarzenie", "Edit", new { @Id = Model.AppEventID }, new { @class = "btn btn-primary right col-md-6" })<br />
-                        <br/>
-                        @Html.ActionLink("Usuń wydarzenie", "Delete", new { @Id = Model.AppEventID }, new { @class = "btn btn-primary right col-md-6" })
-                    }
-
-                </div>
+                
+                    
             </div>
         </div>
-        <div class="col-md-4">
-            <h2>Uczestnicy</h2>
-            <ul style="list-style: none">
+            <div class="col-md-4">
+                @if (!userIsHost)
+                {
+                    if (!userIsGuest)
+                    {
+                        @Html.ActionLink("Dołącz", "JoinParty", new { @partyId = Model.AppEventID }, new { @class = "btn btn-primary  col-md-12" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Opuść", "LeaveParty", new { @partyId = Model.AppEventID }, new { @class = "btn btn-primary center-block col-md-12" })
+                    }
+                }
+
+                @if (userIsHost)
+                {
+                    @Html.ActionLink("Edytuj wydarzenie", "Edit", new { @Id = Model.AppEventID }, new { @class = "btn btn-primary right col-md-6" })<br />
+                    <br />
+                    @Html.ActionLink("Usuń wydarzenie", "Delete", new { @Id = Model.AppEventID }, new { @class = "btn btn-primary right col-md-6" })
+                }
+
+           
+
+            <h2 class="shadowed">Uczestnicy</h2>
+            <ul style="list-style: none;">
                 @if (Model.Guests != null)
                 {
                     foreach (var item in Model.Guests)
                      {
                          //url.action tworzy relatywny link do akcji details kontrolera appusers i przeysyla mu id usera
-                         <li>
+                         <li style="padding: 1vh; margin-left: -40px;">
                              @if (item.Sex == Sex.Female)
                              {
                                  <img class=" img-circle" src="~/Content/UserIcon/Female.png" style="width: 50px; height: 50px;"/>
