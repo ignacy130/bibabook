@@ -8,14 +8,14 @@
 
 <h2>@ViewBag.Title</h2>
 
-<div>
+<div class="bg-gray">
 
     <hr />
 
-    <div class="row">
+    <div class="row ">
 
-        <section class="col-md-12 col-sm-12 col-xs-12 content">
-            <div class="col-md-8 col-sm-12 col-xs-12 event-block">
+        <section class="col-md-12 col-sm-12 col-xs-12 content ">
+            <div class="col-md-8 col-sm-12 col-xs-12 event-block ">
                 <div class="col-md-4 col-sm-4 col-xs-5 left-panel text-center" style="border:none">
 
                     <div>
@@ -52,10 +52,7 @@
                             }
                         }
                     </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+
                 </div>
                 <div class="col-md-6">
 
@@ -105,12 +102,11 @@
 
 
     </div>
-    <br />
-    <br />
 
 
 
-    <div class="panel-heading">WYDARZENIA W KTORYCH UCZESTNICZY</div>
+
+    <div class="panel-heading ">WYDARZENIA W KTORYCH UCZESTNICZY</div>
 
     <table class="table">
         <thead>
@@ -145,7 +141,7 @@
             {
 
                 <tbody>
-                    <tr>
+                    <tr class="">
                         <td>
                             <p>@Html.ActionLink(evt.Name, "Details", "AppEvents", new { id = evt.AppEventID }, null)</p>
                         </td>
@@ -155,20 +151,20 @@
                         </td>
 
                         <td>
-                            @Html.DisplayFor(model => evt.TimeStart).ToString().Substring(0, 10)
+                            @evt.TimeStart.Date.ToShortDateString()
                         </td>
 
                         <td>
-                            @Html.DisplayFor(model => evt.TimeEnd).ToString().Substring(0, 10)
+                            @evt.TimeStart.Date.ToShortDateString()
                         </td>
 
 
-                                <td>
-                                    @Html.ActionLink("Opuść", "LeaveParty", "AppEvents", new { @partyId = evt.AppEventID }, new { @class = "btn btn-primary right col-md-12" })
+                        <td>
+                            @Html.ActionLink("Opuść", "LeaveParty", "AppEvents", new { @partyId = evt.AppEventID }, new { @class = "btn btn-primary right col-md-12" })
 
-                                </td>
-                            
-                        
+                        </td>
+
+
                     </tr>
                 </tbody>
 
@@ -213,7 +209,7 @@
             {
 
                 <tbody>
-                    <tr>
+                    <tr class="">
                         <td>
                             <p>@Html.ActionLink(evt.Name, "Details", "AppEvents", new { id = evt.AppEventID }, null)</p>
                         </td>
@@ -223,11 +219,11 @@
                         </td>
 
                         <td>
-                            @Html.DisplayFor(model => evt.TimeStart).ToString().Substring(0, 10)
+                            @evt.TimeStart.Date.ToShortDateString()
                         </td>
 
                         <td>
-                            @Html.DisplayFor(model => evt.TimeEnd).ToString().Substring(0, 10)
+                            @evt.TimeStart.Date.ToShortDateString()
                         </td>
 
 
@@ -250,11 +246,11 @@
                         else
                         {
                             <td>
-                                @Html.ActionLink("Usuń", "Delete", "AppEvents", new { @Id = evt.AppEventID },"")
+                                @Html.ActionLink("Usuń", "Delete", "AppEvents", new { @Id = evt.AppEventID }, "")
                             </td>
                             <br />
                             <td>
-                                @Html.ActionLink("Edytuj", "Edit", "AppEvents", new { @Id = evt.AppEventID },"")
+                                @Html.ActionLink("Edytuj", "Edit", "AppEvents", new { @Id = evt.AppEventID }, "")
                             </td>
                         }
                     </tr>
