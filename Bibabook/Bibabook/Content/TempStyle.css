@@ -4,7 +4,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    color: #eee;
+    color: #fefefe;
 }
 
 .wrapper {
@@ -59,7 +59,9 @@ header .logo {
   height: 100%;
   line-height: 60px;
   font-size: 22pt;
-  font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
   float: left;
 }
 

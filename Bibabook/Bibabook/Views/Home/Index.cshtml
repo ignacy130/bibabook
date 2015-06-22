@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
         <div class="row text-center">
-            <h1>Wydarzenia</h1>
+            <h1 class="shadowed">Wydarzenia</h1>
         </div>
         @foreach (var item in Model)
         {
@@ -15,16 +15,20 @@
                 var src = (Uri.TryCreate(item.Background, UriKind.Absolute, out uriResult) && uriResult.Scheme == Uri.UriSchemeHttp) ? "~/Content/UserIcon/Event.png" : item.Background;
 
                 <div class=" row wiersz bg-gray">
-                    <h4 class="text-center">@item.TimeStart.Day-@item.TimeStart.Month-@item.TimeStart.Year</h4>
+                        <h4 class="tytul_wydarzenia text-center">@item.Name / @item.TimeStart.Day-@item.TimeStart.Month-@item.TimeStart.Year</h4>
                     @*<a href="@Url.Action("Details", new { @id=item.AppEventID})" class="link_class">*@
                     <div class="col-md-3 col-lg-3  text-center">
+
                         <img class="" src="@src" style="width: 150px;">
-                        <h4 class="tytul_wydarzenia">Nazwa: @item.Name</h4>
+
+                        @*<img class="img-rounded" src="~/Content/UserIcon/Event.png" style="width: 150px;">
+                        <h4 class="tytul_wydarzenia">Tytuł: <br>@item.Name</h4>*@
+
                     </div>
                     <div class="col-md-9 col-lg-9">
                         <div class="row">
                             <p class="opis_wydarzenia">
-                                Opis: @item.Description
+                                @item.Description
                             </p>
                         </div>
                         <div class="row pull-right" style="margin-right: 1px; margin-top: 5.5%; margin-bottom: 2%;">
@@ -33,6 +37,7 @@
                                 <a href="@Url.Action("Details", "AppEvents", new {@id = item.AppEventID})" class="btn btn-info">Zobacz wiecej!</a>
                             </div>
                         </div>
+                      
                     </div>
                     @*</a>*@
                 </div>

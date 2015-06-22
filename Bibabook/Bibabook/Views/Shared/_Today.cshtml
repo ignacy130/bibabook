@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<Bibabook.Implementation.Models.AppEvent>
 <div class="col-lg-4">
-    <div class="row text-center naglowek_prawy">
-        <h1>Dzisiejsze wydarzenia</h1>
+    <div class="row text-center">
+        <h1 class="shadowed">Dzisiaj</h1>
     </div>
     
         <div class="container">
-
             @foreach (var item in Model.Where(x => x.TimeStart.Date == DateTime.Today))
             {
                 if (item.IsActive)
@@ -13,8 +12,10 @@
                     <div class="row center-block text-center wiersz bg-gray">
                         <img class="img-rounded" src="~/Content/UserIcon/Event.png" style="width: 150px;">
                         <h4>@item.Name</h4>
-                        <div class="btn-group">
-                            @Html.ActionLink("Dołącz", "JoinParty", "AppEvents", new { @partyId = item.AppEventID }, new { @class = "btn btn-primary text-center" })
+
+                        <div class="btn-group img-responsive">
+                            @Html.ActionLink("Dołącz", "JoinParty", "AppEvents", new {@partyId = item.AppEventID}, new {@class = "btn btn-primary text-center"})
+
                             <a href="@Url.Action("Details", "AppEvents", new {@id = item.AppEventID})" class="btn btn-info">Zobacz wiecej!</a>
                         </div>
                     </div>
@@ -22,6 +23,5 @@
                 }
             }
 
-        </div>
-    
+            </div>
 </div>
