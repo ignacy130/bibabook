@@ -1,15 +1,18 @@
 ﻿body {
     padding: 0;
+    background-image: url(/Content/bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #eee;
 }
 
 .wrapper {
-    width: 90%;
-    height: 100%;
     margin: 0 auto;
 }
 
 header {
-  background-color: #111;
+  background-color: #333;
   color: #fff;
   overflow: hidden;
   height: 60px;

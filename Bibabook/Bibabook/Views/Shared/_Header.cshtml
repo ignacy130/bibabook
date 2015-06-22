@@ -6,8 +6,8 @@
     };
 }
 
-<header>
-    <div class="wrapper">
+<header class="wrapper navbar-fixed-top">
+    <div class="container">
         @Html.ActionLink("Bibabook", "Index", "Home", null, htmlAttributes: new { @class = "logo" })
 
         <!-- SearchBox -->
@@ -29,7 +29,7 @@
             powinien zostać tutaj dodany?
         -->
         @Html.Partial("_UserPanel")
-    </div>
+    
 </header>
 
 

@@ -3,12 +3,15 @@
 
 @{
     AppUser user = null;
+    
     try
     {
         user = UserHelper.GetLogged(Session);
+
     }
     catch (Exception)
     {
+        
     }
 }
 
@@ -31,7 +34,7 @@
             @*<li>Witaj @user.Name</li>*@
         </ul>
         <!--<img src="Images/portret.png" class="img-responsive" style="height:40px;" alt="Profile picture">-->
-        <div style="height:40px;width:40px;background:#484"></div>
+        
     }
 </nav>
 
