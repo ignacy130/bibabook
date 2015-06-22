@@ -1,4 +1,8 @@
-﻿.date-text {
+﻿body,p,h1,h2,h3,h4,h5 {
+    font-family: 'Monda', sans-serif;
+}
+
+.date-text {
     padding-top: 20px;
 }
 
@@ -99,11 +103,17 @@ button{
 }
 .naglowek_prawy {
     padding-bottom:0.8rem;
-    padding-top:1.2%;
+    margin-top:7.3%;
 }
 .wiersz p {
         margin-left:1rem;
         margin-right:1rem;
+}
+
+.przyciski {
+   padding-right:1rem;
+   margin-top:20%;
+   margin-bottom:2%;
 }
 @media(max-width:800px) {
     .wiersz {
@@ -117,4 +127,13 @@ button{
     .opis_wydarzenia {
     padding-right:2rem;
     }
+    .przyciski {
+    margin-bottom:1rem;
+    }
+
+}
+@media (min-width:800px) and (max-width:1200px)  {
+    .naglowek_prawy {
+    margin-top:9%;
+}
 }

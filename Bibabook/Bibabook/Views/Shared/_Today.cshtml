@@ -4,7 +4,7 @@
         <h2>Dzisiejsze wydarzenia</h2>
     </div>
     <div class="jumbotron">
-        <div class="container">
+     
 
             @foreach (var item in Model.Where(x => x.TimeStart.Date == DateTime.Today))
             {
@@ -13,7 +13,7 @@
                     <div class="row center-block text-center">
                         <img class="img-rounded" src="~/Content/UserIcon/Event.png" style="width: 150px;">
                         <h4>@item.Name</h4>
-                        <div class="btn-group">
+                        <div class="btn-group img-responsive">
                             @Html.ActionLink("Dołącz", "JoinParty", "AppEvents", new {@partyId = item.AppEventID}, new {@class = "btn btn-primary text-center"})
                             <a href="@Url.Action("Details", "AppEvents", new {@id = item.AppEventID})" class="btn btn-info">Zobacz wiecej!</a>
                         </div>
@@ -22,6 +22,6 @@
                 }
             }
 
-        </div>
+     
     </div>
 </div>
