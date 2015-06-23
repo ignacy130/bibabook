@@ -15,30 +15,54 @@
     }
 }
 
+<ul class="nav navbar-nav" id="operations">
+
+   @if (user == null)
+   {
+
+    <li>@Html.ActionLink("Zarejestruj", "Register", "AppUsers", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Zaloguj się", "Login", "AppUsers", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+   }
+   else
+   {
+
+    @*<li>@Html.ActionLink("Wszystkie wydarzenia", "Index", "AppEvents")</li>*@
+    <li>@Html.ActionLink("Dodaj wydarzenie", "Create", "AppEvents")</li>
+    <li>@Html.ActionLink("Znajomi", "MyFriends", "AppUsers")</li>
+    <li>@Html.ActionLink("Twoje dane", "Details", "AppUsers", new { id = user.AppUserID }, null)</li>
+    <li>@Html.ActionLink("Wyloguj się", "LogOut", "AppUsers")</li>
+    @*<li>Witaj @user.Name</li>*@
+
+        <!--<img src="Images/portret.png" class="img-responsive" style="height:40px;" alt="Profile picture">-->
+
+   }
+</ul>
+<!--
 <nav class="user-panel">
     @if (user == null)
     {
-        <ul>
+        
             <li>@Html.ActionLink("Zarejestruj", "Register", "AppUsers", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
             <li>@Html.ActionLink("Zaloguj się", "Login", "AppUsers", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-        </ul>
+        
     }
     else
     {
-        <ul>
+        
             @*<li>@Html.ActionLink("Wszystkie wydarzenia", "Index", "AppEvents")</li>*@
             <li>@Html.ActionLink("Dodaj wydarzenie", "Create", "AppEvents")</li>
             <li>@Html.ActionLink("Znajomi", "MyFriends", "AppUsers")</li>
             <li>@Html.ActionLink("Twoje dane", "Details", "AppUsers", new { id = user.AppUserID }, null)</li>
             <li>@Html.ActionLink("Wyloguj się", "LogOut", "AppUsers")</li>
             @*<li>Witaj @user.Name</li>*@
-        </ul>
-        <!--<img src="Images/portret.png" class="img-responsive" style="height:40px;" alt="Profile picture">-->
+        
+        
         
     }
 </nav>
 
-
+-->
 
 
 
