@@ -24,29 +24,32 @@ namespace Bibabook.Controllers
         [LoggedFilter]
         public ActionResult Search(string name)
         {
-            var logged = UserHelper.GetLogged(Session);
-            var users = db.AppUsers.Where(x => x.Name.Contains(name) || x.Surname.Contains(name)).Where(x => x.Email != logged.Email).ToList();
-            var events = db.AppEvents.Where(x => x.Name.Contains(name) || x.Description.Contains(name)).ToList();
-            var results = new List<SearchItemViewModel>();
-            foreach (var item in users)
+                var results = new List<SearchItemViewModel>();
+            if (!string.IsNullOrEmpty(name))
             {
-                results.Add(
-                    new SearchItemViewModel()
-                    {
-                        Id = item.AppUserID,
-                        Name = item.Name + " " + item.Surname,
-                        Type = AppType.AppUser
-                    });
-            }
-            foreach (var item in events)
-            {
-                results.Add(
-                    new SearchItemViewModel()
-                    {
-                        Id = item.AppEventID,
-                        Name = item.Name,
-                        Type = AppType.AppEvent
-                    });
+                var logged = UserHelper.GetLogged(Session);
+                var users = db.AppUsers.Where(x => x.Name.Contains(name) || x.Surname.Contains(name)).Where(x => x.Email != logged.Email).ToList();
+                var events = db.AppEvents.Where(x => x.Name.Contains(name) || x.Description.Contains(name)).ToList();
+                foreach (var item in users)
+                {
+                    results.Add(
+                        new SearchItemViewModel()
+                        {
+                            Id = item.AppUserID,
+                            Name = item.Name + " " + item.Surname,
+                            Type = AppType.AppUser
+                        });
+                }
+                foreach (var item in events)
+                {
+                    results.Add(
+                        new SearchItemViewModel()
+                        {
+                            Id = item.AppEventID,
+                            Name = item.Name,
+                            Type = AppType.AppEvent
+                        });
+                }
             }
             return PartialView("Results", results);
         }
